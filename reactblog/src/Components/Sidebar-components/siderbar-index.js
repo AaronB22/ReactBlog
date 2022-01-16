@@ -1,7 +1,8 @@
 import {
     Card,
   } from 'react-bootstrap'
-import FriendsList from './friendslist'
+import FriendsList from './friendslist';
+import MessageBoard from './MessagesBoard';
 
 const SideBar = ()=>{
     return(
@@ -15,6 +16,7 @@ const SideBar = ()=>{
             padding:'0'
             }}>
             <FriendsList/>
+            <MessageBoard/>
         </Card>
         </>
     )

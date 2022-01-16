@@ -7,7 +7,9 @@ const FriendsList = ()=>{
         <>
         <Card style={{
             backgroundColor:'',
-            width: '100%'
+            width: '100%',
+            height: '20rem',
+            marginTop: '4rem'
         }}>
             <Card.Title className='fs-3 text-center'>
                 Friends List
