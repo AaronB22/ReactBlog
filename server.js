@@ -1,6 +1,13 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose')
+const io = require('socket.io', {
+  rememberTransport: false, transports: ['WebSocket', 'Flash Socket', 'AJAX long-polling']
+})(3001, {
+  cors: {
+    origin: ['http://localhost:3000', 'http://localhost:5000']
+  }
+})
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -10,15 +17,27 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static("public"));
 
-app.get('/api/hello', (req, res) => {
-    console.log('getting request')
-  res.send({body: 'hey'});
-});
 
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/reactBlogDB',  {
   useNewUrlParser: true,
 });
 
 app.use(require("./database/routesdb"))
+io.on("connection", socket =>{
+  socket.on('send-msg', (string)=>{
+    console.log('io req')
+    io.emit('res-msg', string)
+    console.log(string)
+  })
+  socket.on('chatroom_joined', (data)=>{
+    socket.join(data);
+    console.log("New User")
+  })
+  socket.on('disconnect',()=>{
+    console.log('USER DISCONNECTED')
+  })
+})
+
+
 
 app.listen(port, () => console.log(`Listening on port ${port}`));

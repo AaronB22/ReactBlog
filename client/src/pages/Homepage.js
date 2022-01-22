@@ -1,38 +1,28 @@
 import { useEffect, useState } from "react";
 import {
     Container,
-    Card
+    Card,
+    Button
   } from 'react-bootstrap';
-
-
+import MsgForm from "../Components/MsgForm";
+import {io} from 'socket.io-client'
+const PORT = 'http://localhost:3001'
+let socket;
 
 const Homepage= ()=>{
-    const [Loaded, setLoaded] = useState(false)
-    const [ChatEntries, setChatEntries]= useState()
+    const [msgData, setMsgData] = useState([])
+    socket = io(PORT)
+    socket.connect()
     useEffect(()=>{
-        fetch('/getMsg')
-          .then((res)=>res.json())
-          .then(data=> {
-              setChatEntries(data)
-            })
-            .then(()=>{
-                console.log(ChatEntries)
-                setLoaded(true)
-                // ChatEntries.map((x)=>{
-                //     console.log(x)
-                // })
-            })
-        }, []);
-        
-        if(!Loaded){
-            return(
-                <>
-                Loading....
-                </>
-            )
-        }
-        if (Loaded){
-            console.log('loaded')
+        // return() =>{
+            //     socket.disconnect()
+            // }
+            
+        },[PORT])
+        socket.on('res-msg', msg =>{
+            console.log(msg)
+            setMsgData([...msgData, msg])
+        })
         return(
        <>
         <Card className="bg-dark text-white" style={{
@@ -41,24 +31,25 @@ const Homepage= ()=>{
               marginLeft:'auto',
                marginRight:'auto'
                }}>
-           {ChatEntries.map((x)=>{
+                {msgData.map((x)=>{
                     return (
                         <>
                         <Card style={{
                             marginTop:'2rem',
                             color:'black'
                         }}>
-                            {x.message}
+                            {x}
                         </Card>
                         
                         
                         </>
                     )
                 })}
+                <MsgForm />
         </Card>
        </>
     )
-    }
+    
 }
 
 export default Homepage;

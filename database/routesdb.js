@@ -8,6 +8,7 @@ router.get('/test', (req, res)=>{
 })
 
 router.post('/msg', ({body}, res)=>{
+    console.log(body)
     Message.insertMany(body)
     .then(dbMsg=>{
         res.json(dbMsg)
