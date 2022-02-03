@@ -18,7 +18,15 @@ import { UserIDContext } from './utils/LoginInfo';
 import { UserNameContext } from './utils/LoginInfo';
 
 function App() {
-  const [userInfo, setUserInfo]= useState()
+  const [userInfo, setUserInfo]= useState(null)
+  const [logInStatus, setLogInStatus] = useState('Login')
+  useEffect(()=>{
+    if(userInfo){
+      setLogInStatus(null)
+    }
+  },[userInfo])
+
+
   return (
         <>
             <SocketContext.Provider>
@@ -27,7 +35,8 @@ function App() {
           <Navbar bg="primary" expand='lg'>
             <Container>
             <Navbar.Brand ><Link to="/" className='text-black'>Home</Link></Navbar.Brand>
-            <Navbar.Brand ><Link to="/login" className='text-black'>Login</Link></Navbar.Brand>
+            <Navbar.Brand  ><Link to="/login" className='text-black'>{logInStatus}</Link></Navbar.Brand>
+            <Navbar.Brand ><Link to="/" className='text-black'>{userInfo}</Link></Navbar.Brand>
             </Container>
           </Navbar>
           <Row style={{
