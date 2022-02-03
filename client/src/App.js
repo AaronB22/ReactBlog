@@ -26,11 +26,10 @@ function App() {
                 <Router >
           <Navbar bg="primary" expand='lg'>
             <Container>
-            <Navbar.Brand >Login</Navbar.Brand>
+            <Navbar.Brand ><Link to="/" className='text-black'>Home</Link></Navbar.Brand>
+            <Navbar.Brand ><Link to="/login" className='text-black'>Login</Link></Navbar.Brand>
             </Container>
           </Navbar>
-           <Link to="/">Home</Link>
-          <Link to="/login">About</Link>
           <Row style={{
             width: '100%'
           }}>
