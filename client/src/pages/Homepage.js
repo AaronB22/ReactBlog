@@ -14,12 +14,12 @@ const Homepage= ()=>{
     const { id } = useParams()
     console.log(id)
     useEffect(()=>{
-       socket.on('res-msg', msg=>{
+       socket.on(id, msg=>{
             console.log(msg)
             setMsgData([...msgData, msg])
        })
        return()=> socket.off('res-msg')
-    }, [msgData])
+    }, [msgData, id])
     
         return(
        <>

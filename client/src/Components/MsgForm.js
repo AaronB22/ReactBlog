@@ -5,14 +5,16 @@ import {
 } from 'react-bootstrap';
 import { UserNameContext } from '../utils/LoginInfo';
 import { useContext } from 'react';
-
+import { useParams } from "react-router-dom";
 
 const MsgForm = (props)=>{
     const {userInfo} = useContext(UserNameContext)
+    const { id } = useParams()
+    console.log(id)
     const socket= props.io
     const sendData= (txtValue)=>{
         // console.log(msgInput)
-        socket.emit('send-msg', {txtValue, userInfo})
+        socket.emit('send-msg', {txtValue, userInfo, id})
         return()=>{
             socket.disconnect()
         }
