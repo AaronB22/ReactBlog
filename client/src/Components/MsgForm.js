@@ -3,27 +3,24 @@ import {
     FormControl,
     Button
 } from 'react-bootstrap';
-import {io} from 'socket.io-client'
-import { useState, useEffect } from 'react';
 
-const MsgForm = ()=>{
-    const [msgInput, setmsgInput] = useState()
-    const socket = io('http://localhost:3001')
-    const getMsgData= (e)=>{
-        console.log(e.target.value)
-        setmsgInput(e.target.value)
-    }
+
+
+const MsgForm = (props)=>{
+    const socket= props.io
+    // const [msgInput, setmsgInput] = useState()
+    // const getMsgData= (e)=>{
+    //     setmsgInput(e.target.value)
+    // }
    
-    const sendData= ()=>{
-        console.log(msgInput)
-        socket.emit('send-msg', msgInput)
+    const sendData= (txtValue)=>{
+        // console.log(msgInput)
+        socket.emit('send-msg', {txtValue})
         return()=>{
             socket.disconnect()
         }
-        
-        // socket.removeAllListeners('send-msg')
     }
-
+    
     return(
         <>
        <InputGroup className="mt-3">
@@ -31,12 +28,15 @@ const MsgForm = ()=>{
       placeholder="message..."
       aria-label="message"
       aria-describedby="basic-addon1"
-        onChange={e=>getMsgData(e)}
+      onKeyPress={e=>{
+            if(e.key==='Enter' && e.target.value){
+                sendData(e.target.value);
+                e.target.value = '';
+            }
+        }}
     />
   </InputGroup>
-  <Button onClick={()=>sendData()}>
-      ters
-  </Button>
+ 
         </>
     )
 }

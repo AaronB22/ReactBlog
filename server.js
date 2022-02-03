@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose')
+let test=0
 const io = require('socket.io', {
   rememberTransport: false, transports: ['WebSocket', 'Flash Socket', 'AJAX long-polling']
 })(3001, {
@@ -24,10 +25,10 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/reactBlogDB',  
 
 app.use(require("./database/routesdb"))
 io.on("connection", socket =>{
-  socket.on('send-msg', (string)=>{
-    console.log('io req')
-    io.emit('res-msg', string)
-    console.log(string)
+  console.log('USER CONNECTED')
+  socket.on('send-msg', (msgObj)=>{
+    console.log(msgObj)
+    io.emit('res-msg', msgObj)
   })
   socket.on('chatroom_joined', (data)=>{
     socket.join(data);

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import {
     Container,
     Card,
@@ -6,31 +6,28 @@ import {
   } from 'react-bootstrap';
 import MsgForm from "../Components/MsgForm";
 import {io} from 'socket.io-client'
-const PORT = 'http://localhost:3001'
-let socket;
+import {socket} from "../utils/SocketProvider";
+import { UserNameContext } from "../utils/LoginInfo";
 
 const Homepage= ()=>{
     const [msgData, setMsgData] = useState([])
-    socket = io(PORT)
-    socket.connect()
+    const {userInfo, setUserInfo} = useContext(UserNameContext)
     useEffect(()=>{
-        // return() =>{
-            //     socket.disconnect()
-            // }
-            
-        },[PORT])
-        socket.on('res-msg', msg =>{
+       socket.on('res-msg', msg=>{
             console.log(msg)
             setMsgData([...msgData, msg])
-        })
+       })
+       return()=> socket.off('res-msg')
+    }, [msgData])
+    
+    const testState=()=>{
+        console.log('chaning Context')
+        setUserInfo('AARON')
+    }
+        
         return(
        <>
-        <Card className="bg-dark text-white" style={{
-            height:'100rem',
-             width:'75rem',
-              marginLeft:'auto',
-               marginRight:'auto'
-               }}>
+                   <div>{userInfo} TTTTTTTTT</div>
                 {msgData.map((x)=>{
                     return (
                         <>
@@ -38,15 +35,20 @@ const Homepage= ()=>{
                             marginTop:'2rem',
                             color:'black'
                         }}>
-                            {x}
+                            <Card.Title>
+                                {x.userName}
+                            </Card.Title>
+                            {x.txtValue}
                         </Card>
                         
                         
                         </>
                     )
                 })}
-                <MsgForm />
-        </Card>
+                <MsgForm
+                    io= {socket}               
+                />
+    
        </>
     )
     

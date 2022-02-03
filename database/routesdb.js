@@ -1,26 +1,26 @@
 const router =require('express').Router()
-const Message = require('./test/testSchema')
 
-console.log('routes loading')
-router.get('/test', (req, res)=>{
-    console.log('test')
-    res.send('heeeeeeeeeeey')
-})
 
-router.post('/msg', ({body}, res)=>{
-    console.log(body)
-    Message.insertMany(body)
-    .then(dbMsg=>{
-        res.json(dbMsg)
-    })
-});
+// console.log('routes loading')
+// router.get('/test', (req, res)=>{
+//     console.log('test')
+//     res.send('heeeeeeeeeeey')
+// })
 
-router.get('/getMsg',(req, res)=>{
-    Message.find({}, '-_id')
-    .then(db =>{
-        res.json(db)
-    })
-})
+// router.post('/msg', ({body}, res)=>{
+//     console.log(body)
+//     Message.insertMany(body)
+//     .then(dbMsg=>{
+//         res.json(dbMsg)
+//     })
+// });
+
+// router.get('/getMsg',(req, res)=>{
+//     Message.find({}, '-_id')
+//     .then(db =>{
+//         res.json(db)
+//     })
+// })
 
 
 
