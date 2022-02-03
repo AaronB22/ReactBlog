@@ -53,10 +53,13 @@ function App() {
                marginRight:'auto'
                }}>
                   <Routes>
+                    <Route exact path='/login' element={<Login/>}/>
+                    <Route path='/chatroom/:id' element={
+                      <Homepage/>
+                    }/>
                     <Route exact path='/' element={
                       <Homepage/>
                     }/>
-                    <Route exact path='/login' element={<Login/>}/>
                   </Routes>
                     </Card>
               </UserNameContext.Provider>

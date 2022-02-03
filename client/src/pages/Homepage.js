@@ -7,10 +7,12 @@ import {
 import MsgForm from "../Components/MsgForm";
 import {socket} from "../utils/SocketProvider";
 import { UserNameContext } from "../utils/LoginInfo";
+import { useParams } from "react-router-dom";
 
 const Homepage= ()=>{
     const [msgData, setMsgData] = useState([])
-    const {userInfo, setUserInfo} = useContext(UserNameContext)
+    const { id } = useParams()
+    console.log(id)
     useEffect(()=>{
        socket.on('res-msg', msg=>{
             console.log(msg)
