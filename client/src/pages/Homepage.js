@@ -5,7 +5,6 @@ import {
     Button
   } from 'react-bootstrap';
 import MsgForm from "../Components/MsgForm";
-import {io} from 'socket.io-client'
 import {socket} from "../utils/SocketProvider";
 import { UserNameContext } from "../utils/LoginInfo";
 
@@ -20,23 +19,17 @@ const Homepage= ()=>{
        return()=> socket.off('res-msg')
     }, [msgData])
     
-    const testState=()=>{
-        console.log('chaning Context')
-        setUserInfo('AARON')
-    }
-        
         return(
        <>
-                   <div>{userInfo} TTTTTTTTT</div>
                 {msgData.map((x)=>{
                     return (
                         <>
-                        <Card style={{
+                        <Card className="bg-dark text-white" style={{
                             marginTop:'2rem',
-                            color:'black'
+                            textdecoration: 'underline',
                         }}>
                             <Card.Title>
-                                {x.userName}
+                                {x.userInfo}
                             </Card.Title>
                             {x.txtValue}
                         </Card>
@@ -46,7 +39,7 @@ const Homepage= ()=>{
                     )
                 })}
                 <MsgForm
-                    io= {socket}               
+                    io= {socket}              
                 />
     
        </>

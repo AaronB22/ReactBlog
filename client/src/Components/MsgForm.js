@@ -3,26 +3,26 @@ import {
     FormControl,
     Button
 } from 'react-bootstrap';
-
+import { UserNameContext } from '../utils/LoginInfo';
+import { useContext } from 'react';
 
 
 const MsgForm = (props)=>{
+    const {userInfo} = useContext(UserNameContext)
     const socket= props.io
-    // const [msgInput, setmsgInput] = useState()
-    // const getMsgData= (e)=>{
-    //     setmsgInput(e.target.value)
-    // }
-   
     const sendData= (txtValue)=>{
         // console.log(msgInput)
-        socket.emit('send-msg', {txtValue})
+        socket.emit('send-msg', {txtValue, userInfo})
         return()=>{
             socket.disconnect()
         }
     }
     
     return(
-        <>
+        <div className='position-fixed' style={{
+            bottom:0,
+            width:'70rem'
+        }}>
        <InputGroup className="mt-3">
     <FormControl
       placeholder="message..."
@@ -37,7 +37,7 @@ const MsgForm = (props)=>{
     />
   </InputGroup>
  
-        </>
+        </div>
     )
 }
 

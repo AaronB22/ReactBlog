@@ -37,13 +37,13 @@ function App() {
 
             <Chatrooms/>
              <UserNameContext.Provider value={{userInfo, setUserInfo}}>
+
                   <Card className="bg-dark text-white" style={{
             height:'100rem',
              width:'75rem',
               marginLeft:'auto',
                marginRight:'auto'
                }}>
-
                   <Routes>
                     <Route exact path='/' element={
                       <Homepage/>

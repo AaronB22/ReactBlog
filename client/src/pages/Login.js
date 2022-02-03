@@ -10,8 +10,8 @@ const Login=()=>{
         alert(result)
     }
     const handleLogin= (googleData) =>{
-    //    console.log(googleData)
-        // setUserName('loginTest')
+       console.log(googleData)
+        setUserInfo(googleData.profileObj.name)
         
     }
     const testState=()=>{
