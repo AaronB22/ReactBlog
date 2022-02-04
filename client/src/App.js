@@ -12,7 +12,7 @@ import {
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Chatrooms from './Components/Chatroom';
 import SideBar from './Components/Sidebar-components/siderbar-index';
-import * as data from './testStuff/test.json'
+import CreateNewChatRoom from './pages/CreateNewChatRoom';
 import {SocketContext} from './utils/SocketProvider'
 import { UserIDContext } from './utils/LoginInfo';
 import { UserNameContext } from './utils/LoginInfo';
@@ -54,6 +54,7 @@ function App() {
                }}>
                   <Routes>
                     <Route exact path='/login' element={<Login/>}/>
+                    <Route exact path='/newChatroom' element={<CreateNewChatRoom/>}/>
                     <Route path='/chatroom/:id' element={
                       <Homepage/>
                     }/>

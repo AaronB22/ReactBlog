@@ -1,7 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose')
-let test=0
 const io = require('socket.io', {
   rememberTransport: false, transports: ['WebSocket', 'Flash Socket', 'AJAX long-polling']
 })(3001, {

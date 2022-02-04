@@ -1,11 +1,7 @@
 const router =require('express').Router()
-
+const Chatroom = require('./models/Chatrooms')
 
 // console.log('routes loading')
-// router.get('/test', (req, res)=>{
-//     console.log('test')
-//     res.send('heeeeeeeeeeey')
-// })
 
 // router.post('/msg', ({body}, res)=>{
 //     console.log(body)
@@ -15,6 +11,18 @@ const router =require('express').Router()
 //     })
 // });
 
+router.get('/findChatRoom/:name', (req, res)=>{
+     
+        console.log('getting req')
+        const params= req.params.name
+       const q=Chatroom.find({}).where(' chatroomName').equals(params)
+        q.then(()=>console.log(q))
+        
+    })
+
+router.post('/newChatRoom', (req, res)=>{
+    Chatroom.insertMany
+})
 // router.get('/getMsg',(req, res)=>{
 //     Message.find({}, '-_id')
 //     .then(db =>{
