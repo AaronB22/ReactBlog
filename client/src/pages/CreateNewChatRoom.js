@@ -7,9 +7,23 @@ import {
 
 const CreateNewChatRoom = ()=>{
    const reqNewChatRoom =async (value)=>{
+       const jsonValue={
+           "name":value
+       }
        const url = '/findChatRoom/'+value
-       const req=await fetch(url)
-        console.log(req)
+       const res=await fetch(url)
+        console.log(res)
+        if (res.status===500){
+                console.log('Crreating new Chatroom')
+                fetch('/newChatRoom', {
+                method: 'POST',
+                body: JSON.stringify(jsonValue),
+                headers: {
+                    Accept: 'application/json, text/plain, */*',
+                    'Content-Type': 'application/json',
+                  },
+            })
+        }
    }
 
     return(

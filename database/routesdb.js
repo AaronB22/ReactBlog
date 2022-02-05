@@ -16,19 +16,18 @@ router.get('/findChatRoom/:name', (req, res)=>{
         console.log('getting req')
         const params= req.params.name
        const q=Chatroom.find({}).where(' chatroomName').equals(params)
-        q.then(()=>console.log(q))
+        q.then(()=>console.log('Done'))
         
     })
 
-router.post('/newChatRoom', (req, res)=>{
-    Chatroom.insertMany
+router.post('/newChatRoom', ({body}, res)=>{
+    console.log(body)
+    Chatroom.insertMany(body)
+        .then(x=>{
+            res.json(x)
+        })
 })
-// router.get('/getMsg',(req, res)=>{
-//     Message.find({}, '-_id')
-//     .then(db =>{
-//         res.json(db)
-//     })
-// })
+
 
 
 
