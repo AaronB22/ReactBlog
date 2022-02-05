@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import {
     Card, Container, ListGroup,
   } from 'react-bootstrap'
@@ -19,7 +20,17 @@ const placeHolderChatRoomList=[
 ]
 
 
+
 const Chatrooms=()=>{
+    const [chatrooms, setChatrooms]= useState([])
+    useEffect(()=>{
+        fetch('/getChatRoomList').then(res=>{
+           return res.json()
+        }).then(data=>{
+            console.log(data)
+            setChatrooms(data)
+        })
+    },[])
     return(
         <>
         <Card className='' style={{
@@ -31,12 +42,22 @@ const Chatrooms=()=>{
             <Card.Title className='text-center fs-3 border-bottom border-dark'>
                 ChatRooms
             </Card.Title>
-            <ListGroup variant='flush'>
+            {/* <ListGroup variant='flush'>
                 {placeHolderChatRoomList.map(x=>{
                     const url= `/chatroom/${x.id}`
                 return(
                     <ListGroup.Item>
                         <Link to={url}>{x.chatName}</Link>
+                    </ListGroup.Item>
+                )
+                })}
+            </ListGroup> */}
+             <ListGroup variant='flush'>
+                {chatrooms.map(x=>{
+                    const url= `/chatroom/${x._id}`
+                return(
+                    <ListGroup.Item>
+                        <Link to={url}>{x.name}</Link>
                     </ListGroup.Item>
                 )
                 })}

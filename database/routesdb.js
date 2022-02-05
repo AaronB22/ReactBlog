@@ -10,6 +10,13 @@ const Chatroom = require('./models/Chatrooms')
 //         res.json(dbMsg)
 //     })
 // });
+router.get('/getChatRoomList', async(req, res)=>{
+    const q= await Chatroom.find()
+    console.log(q)
+    res.json(q)
+})
+
+
 
 router.get('/findChatRoom/:name', (req, res)=>{
      
