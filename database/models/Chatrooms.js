@@ -5,7 +5,7 @@ const chatRoomSchema = new Schema({
     name:{
         type: String,
         trim: true
-    }
+    },
 })
 
 const Chatroom= mongoose.model("Chatroom", chatRoomSchema)

@@ -1,22 +1,19 @@
 import {
     Card,
   } from 'react-bootstrap'
-import FriendsList from './friendslist';
-import MessageBoard from './MessagesBoard';
+
 
 const SideBar = ()=>{
     return(
         <>
         <Card style={{
             width:
-            '15rem', 
+            '5rem', 
             height:'100rem',
-            backgroundColor: 'gray',
-            marginLeft: 'auto',
+            backgroundColor: '#05386B',
             padding:'0'
             }}>
-            <FriendsList/>
-            <MessageBoard/>
+           
         </Card>
         </>
     )

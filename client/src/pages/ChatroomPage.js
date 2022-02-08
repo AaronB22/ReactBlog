@@ -1,4 +1,5 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext, useRef } from "react";
+import './css/ChatroomPage.css'
 import {
     Container,
     Card,
@@ -10,6 +11,7 @@ import { UserNameContext } from "../utils/LoginInfo";
 import { useParams } from "react-router-dom";
 
 const ChatroomPage= ()=>{
+    const newMsg= useRef()
     const d= new Date
     const time={
         'hour': d.getHours(),
@@ -17,27 +19,51 @@ const ChatroomPage= ()=>{
     }
     const {userInfo, setUserInfo} = useContext(UserNameContext)
     const [msgData, setMsgData] = useState([])
+    const [chatRoomTitle,setChatroomTitle]= useState()
     const { id } = useParams()
+    useEffect(()=>{
+        fetch('/getChatRoomById/'+id).then(res=>{
+           return res.json()
+        }).then(data=>{
+            console.log(data[0])
+            setChatroomTitle(data[0].name)
+        })
+    },[chatRoomTitle])
     useEffect(()=>{
         const loginData=window.localStorage.getItem('loginInfo')
         const parsedLoginInfo= JSON.parse(loginData)
-        setUserInfo(parsedLoginInfo.name)
-       socket.on(id, msg=>{
+        if(loginData){
+            setUserInfo(parsedLoginInfo.name)
+        }
+        if(!loginData){
+            setUserInfo(null)
+        }
+
+    },[userInfo])
+    useEffect(()=>{
+       socket.once(id, msg=>{
             console.log(msg)
             setMsgData([...msgData, msg])
+            // newMsg.current.scrollIntoView({ behavior: 'smooth' });
        })
        return()=> socket.off('res-msg')
     }, [msgData, id])
     
         return(
-       <>
+       <div className="main">
+            <Card.Title style={{
+                'fontSize':'2rem',
+                'textAlign':'center'
+            }}>
+               {chatRoomTitle}
+            </Card.Title>
                 {msgData.map((x)=>{
                     return (
                         <>
-                        <Card className=" text-dark" style={{
+                        <Card className="test" style={{
                             marginTop:'2rem',
                             textdecoration: 'underline',
-                            border: 'none'
+                            border: 'none',
                         }}>
                             <Card.Title>
                                 {x.userInfo}
@@ -50,7 +76,6 @@ const ChatroomPage= ()=>{
                             {x.txtValue}
                         </Card>
                         
-                        
                         </>
                     )
                 })}
@@ -58,7 +83,7 @@ const ChatroomPage= ()=>{
                     io= {socket}              
                 />
     
-       </>
+       </div>
     )
     
 }

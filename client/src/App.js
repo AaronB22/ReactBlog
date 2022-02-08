@@ -21,6 +21,7 @@ import { UserNameContext } from './utils/LoginInfo';
 function App() {
   const [userInfo, setUserInfo]= useState(null)
   const [logInStatus, setLogInStatus] = useState('Login')
+  console.log('app')
   useEffect(()=>{
     if(userInfo){
       setLogInStatus(null)
@@ -43,15 +44,15 @@ function App() {
           <Row style={{
             width: '100%'
           }}>
-
+            <SideBar/>
             <Chatrooms/>
              <UserNameContext.Provider value={{userInfo, setUserInfo}}>
 
-                  <Card className="bg-white text-dark" style={{
+                  <Card style={{
             height:'100rem',
              width:'75rem',
               marginLeft:'auto',
-               marginRight:'auto'
+               marginRight:'auto',
                }}>
                   <Routes>
                     <Route exact path='/login' element={<Login/>}/>

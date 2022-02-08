@@ -1,25 +1,8 @@
 import { useEffect, useState } from 'react'
 import {
-    Card, Container, ListGroup,
+    Card, Container, ListGroup, Button
   } from 'react-bootstrap'
 import { Link, useParams } from 'react-router-dom'
-
-const placeHolderChatRoomList=[
-   {
-       chatName:'Chatroom 1',
-       id:'1'
-   },
-   {
-    chatName:'Chatroom 2',
-    id:'2'
-    },
-    {
-        chatName:'Chatroom 3',
-        id:'3'
-    },
-]
-
-
 
 const Chatrooms=()=>{
     const [chatrooms, setChatrooms]= useState([])
@@ -37,36 +20,35 @@ const Chatrooms=()=>{
             width: '15rem', 
             height:'100rem',
             backgroundColor: 'gray',
-            padding:'0'
+            padding:'0',
+            backgroundColor: '#5CDB95'
             }}>
             <Card.Title className='text-center fs-3 border-bottom border-dark'>
                 ChatRooms
             </Card.Title>
-            {/* <ListGroup variant='flush'>
-                {placeHolderChatRoomList.map(x=>{
-                    const url= `/chatroom/${x.id}`
-                return(
-                    <ListGroup.Item>
-                        <Link to={url}>{x.chatName}</Link>
-                    </ListGroup.Item>
-                )
-                })}
-            </ListGroup> */}
-             <ListGroup variant='flush'>
-                {chatrooms.map(x=>{
-                    const url= `/chatroom/${x._id}`
-                return(
-                    <ListGroup.Item>
-                        <Link to={url}>{x.name}</Link>
-                    </ListGroup.Item>
-                )
-                })}
-            </ListGroup>
             <Container style={{
                 bottom:0,
             }}>
                 <Link to='/newChatroom'>Create New Chatroom!</Link>
             </Container>
+             <ListGroup variant='flush'>
+                {chatrooms.map(x=>{
+                    const url= `/chatroom/${x._id}`
+                return(
+                    <Button style={{
+                        "marginTop":'1rem',
+                        "borderRadius":'25px',
+                        'textAlign':'center'
+
+                    }}
+                    onClick={()=>{
+                        window.location.assign(url) 
+                    }}>
+                        {x.name}
+                    </Button>
+                )
+                })}
+            </ListGroup>
         </Card>
         </>
     )

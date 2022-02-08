@@ -1,21 +1,21 @@
 const router =require('express').Router()
 const Chatroom = require('./models/Chatrooms')
 
-// console.log('routes loading')
-
-// router.post('/msg', ({body}, res)=>{
-//     console.log(body)
-//     Message.insertMany(body)
-//     .then(dbMsg=>{
-//         res.json(dbMsg)
-//     })
-// });
 router.get('/getChatRoomList', async(req, res)=>{
     const q= await Chatroom.find()
-   
     res.json(q)
 })
 
+router.get('/getChatRoomById/:id', async(req, res)=>{
+    try{
+    const params= req.params.id
+    const q = await Chatroom.find({}).where('_id').equals(params)
+    res.json(q)
+    }
+    catch(err){
+        console.log(err)
+    }
+})
 
 
 router.get('/findChatRoom/:name', (req, res)=>{

@@ -27,6 +27,7 @@ io.on("connection", socket =>{
   console.log('USER CONNECTED')
   socket.on('send-msg', (msgObj)=>{
     const chatroomId=msgObj.id
+      console.log('getting msg')
     io.emit(chatroomId, msgObj)
   })
   socket.on('chatroom_joined', (data)=>{
