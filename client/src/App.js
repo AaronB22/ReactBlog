@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom'
 import Homepage from './pages/Homepage';
 import React from 'react';
 import Login from './pages/Login';
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import {
   Navbar,
   Container,
@@ -16,6 +16,7 @@ import CreateNewChatRoom from './pages/CreateNewChatRoom';
 import {SocketContext} from './utils/SocketProvider'
 import { UserIDContext } from './utils/LoginInfo';
 import { UserNameContext } from './utils/LoginInfo';
+
 
 function App() {
   const [userInfo, setUserInfo]= useState(null)

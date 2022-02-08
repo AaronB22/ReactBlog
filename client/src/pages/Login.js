@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Button } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import GoogleLogin from "react-google-login";
 import {UserNameContext} from "../utils/LoginInfo";
 
@@ -11,37 +11,36 @@ const Login=()=>{
     }
     const handleLogin= (googleData) =>{
        console.log(googleData)
+       const googleObj= {
+         "googleId": googleData.googleId,
+         "name": googleData.profileObj.name
+       }
         setUserInfo(googleData.profileObj.name)
-        
-    }
-    const testState=()=>{
-        console.log('chaning Context')
-        setUserInfo('AARON')
-    }
-    const testState2=()=>{
-        console.log(userInfo)
+        window.localStorage.setItem('loginInfo', JSON.stringify(googleObj))
     }
     return(
         <>
-        <h1>{userInfo}</h1>
-        <div>
-        <GoogleLogin
+       
+        <Card>
+            <Card style={{
+                width:'10rem',
+                marginLeft: 'auto',
+                marginRight: 'auto',
+                color:'black'
+            }}>
+                <Card.Title>
+                    Login With Google
+                </Card.Title>
+                <GoogleLogin
             clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
             buttonText="Log in with Google"
             onSuccess={handleLogin}
             onFailure={handleFailure}
-        ></GoogleLogin>
-            <Button
-            onClick={testState}
             >
-                    change value
-            </Button>
-            <Button
-            onClick={testState2}
-            >
-                    change value
-            </Button>
-        </div>
+
+                </GoogleLogin>
+            </Card>
+        </Card>
         </>
     )
 }

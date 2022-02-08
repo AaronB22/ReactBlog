@@ -12,7 +12,7 @@ const Chatroom = require('./models/Chatrooms')
 // });
 router.get('/getChatRoomList', async(req, res)=>{
     const q= await Chatroom.find()
-    console.log(q)
+   
     res.json(q)
 })
 
