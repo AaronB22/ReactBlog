@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom'
-import Homepage from './pages/Homepage';
+import ChatroomPage from './pages/ChatroomPage';
 import React from 'react';
 import Login from './pages/Login';
 import { useEffect, useState, useContext } from "react";
@@ -47,7 +47,7 @@ function App() {
             <Chatrooms/>
              <UserNameContext.Provider value={{userInfo, setUserInfo}}>
 
-                  <Card className="bg-dark text-white" style={{
+                  <Card className="bg-white text-dark" style={{
             height:'100rem',
              width:'75rem',
               marginLeft:'auto',
@@ -57,15 +57,14 @@ function App() {
                     <Route exact path='/login' element={<Login/>}/>
                     <Route exact path='/newChatroom' element={<CreateNewChatRoom/>}/>
                     <Route path='/chatroom/:id' element={
-                      <Homepage/>
+                      <ChatroomPage/>
                     }/>
                     <Route exact path='/' element={
-                      <Homepage/>
+                      <ChatroomPage/>
                     }/>
                   </Routes>
                     </Card>
               </UserNameContext.Provider>
-            <SideBar />
            </Row>
                 </Router>
                 </UserIDContext.Provider>
