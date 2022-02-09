@@ -75,7 +75,7 @@ const ChatroomPage= ()=>{
                                 </Card.Text>
                             </Card.Title>
                             <Card.Text style={{
-                                 backgroundColor: '#379683',
+                                 backgroundColor: '#55BCC9',
                                  borderRadius: '25px',
                                  width:"60%"
                             }}>

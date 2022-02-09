@@ -21,7 +21,7 @@ const Chatrooms=()=>{
             height:'100rem',
             backgroundColor: 'gray',
             padding:'0',
-            backgroundColor: '#5CDB95'
+            backgroundColor: '#97CAEF'
             }}>
             <Card.Title className='text-center fs-3 border-bottom border-dark'>
                 ChatRooms
@@ -47,8 +47,8 @@ const Chatrooms=()=>{
                     <Button style={{
                         "marginTop":'1rem',
                         "borderRadius":'25px',
-                        'textAlign':'center'
-
+                        'textAlign':'center',
+                        "backgroundColor":'#FC4445'
                     }}
                     onClick={()=>{
                         window.location.assign(url) 
