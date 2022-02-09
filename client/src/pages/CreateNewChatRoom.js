@@ -6,23 +6,35 @@ import {
 
 
 const CreateNewChatRoom = ()=>{
-   const reqNewChatRoom =async (value)=>{
+   const reqNewChatRoom =(value)=>{
        const jsonValue={
            "name":value
        }
-       fetch('/newChatRoom', {
-       method: 'POST',
-       body: JSON.stringify(jsonValue),
-       headers: {
-           Accept: 'application/json, text/plain, */*',
-           'Content-Type': 'application/json',
-         }
+       const url= `/findChatRoom/${value}`
+       fetch(url).then((res)=>{
+           return res.json()
+       }).then((data)=>{
+           if(data[0]){
+              alert('Name Already Taken')
+           }
+           else{
+               
+                  fetch('/newChatRoom', {
+                  method: 'POST',
+                  body: JSON.stringify(jsonValue),
+                  headers: {
+                      Accept: 'application/json, text/plain, */*',
+                      'Content-Type': 'application/json',
+                    }
+                  }).then((res)=>{
+                      return res.json()
+                  }).then((data)=>{
+                      const newUrl='/chatroom/'+data[0]._id
+                      window.location.assign(newUrl)
+                  })
+           }
        })
-    //    const url = '/findChatRoom/'+value
-    //    const res=await fetch(url)
-    //     console.log(res)
-    //     if (res.status===500){
-    //     }
+
    }
 
     return(
@@ -32,7 +44,7 @@ const CreateNewChatRoom = ()=>{
             </h3>
             <InputGroup className="mt-3">
     <FormControl
-      placeholder="message..."
+      placeholder="Chatroom Tittle..."
       aria-label="message"
       aria-describedby="basic-addon1"
       onKeyPress={e=>{

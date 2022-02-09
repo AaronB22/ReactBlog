@@ -10,10 +10,8 @@ import { useParams } from "react-router-dom";
 const MsgForm = (props)=>{
     const {userInfo} = useContext(UserNameContext)
     const { id } = useParams()
-    console.log(id)
     const socket= props.io
     const sendData= (txtValue)=>{
-        // console.log(msgInput)
         socket.emit('send-msg', {txtValue, userInfo, id})
         return()=>{
             socket.disconnect()
@@ -23,7 +21,7 @@ const MsgForm = (props)=>{
     return(
         <div className='position-fixed' style={{
             bottom:0,
-            width:'70rem'
+            width:'70rem',
         }}>
        <InputGroup className="mt-3">
     <FormControl

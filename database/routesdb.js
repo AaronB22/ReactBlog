@@ -18,13 +18,12 @@ router.get('/getChatRoomById/:id', async(req, res)=>{
 })
 
 
-router.get('/findChatRoom/:name', (req, res)=>{
+router.get('/findChatRoom/:name', async(req, res)=>{
      
         console.log('getting req')
         const params= req.params.name
-       const q=Chatroom.find({}).where(' chatroomName').equals(params)
-        q.then(()=>console.log('Done'))
-        
+       const q=await Chatroom.find({}).where('name').equals(params)
+       res.json(q)
     })
 
 router.post('/newChatRoom', ({body}, res)=>{

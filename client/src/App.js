@@ -1,7 +1,6 @@
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom'
-import ChatroomPage from './pages/ChatroomPage';
+import Routers from './Router';
 import React from 'react';
-import Login from './pages/Login';
 import { useEffect, useState, useContext } from "react";
 import {
   Navbar,
@@ -12,7 +11,6 @@ import {
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Chatrooms from './Components/Chatroom';
 import SideBar from './Components/Sidebar-components/siderbar-index';
-import CreateNewChatRoom from './pages/CreateNewChatRoom';
 import {SocketContext} from './utils/SocketProvider'
 import { UserIDContext } from './utils/LoginInfo';
 import { UserNameContext } from './utils/LoginInfo';
@@ -21,7 +19,6 @@ import { UserNameContext } from './utils/LoginInfo';
 function App() {
   const [userInfo, setUserInfo]= useState(null)
   const [logInStatus, setLogInStatus] = useState('Login')
-  console.log('app')
   useEffect(()=>{
     if(userInfo){
       setLogInStatus(null)
@@ -44,26 +41,18 @@ function App() {
           <Row style={{
             width: '100%'
           }}>
-            <SideBar/>
+            {/* <SideBar/> */}
             <Chatrooms/>
              <UserNameContext.Provider value={{userInfo, setUserInfo}}>
 
-                  <Card style={{
+              <Card style={{
             height:'100rem',
-             width:'75rem',
-              marginLeft:'auto',
-               marginRight:'auto',
+             width:'95rem',
+             backgroundColor: '#EDF5E1'
+              // marginLeft:'auto',
+              //  marginRight:'auto',
                }}>
-                  <Routes>
-                    <Route exact path='/login' element={<Login/>}/>
-                    <Route exact path='/newChatroom' element={<CreateNewChatRoom/>}/>
-                    <Route path='/chatroom/:id' element={
-                      <ChatroomPage/>
-                    }/>
-                    <Route exact path='/' element={
-                      <ChatroomPage/>
-                    }/>
-                  </Routes>
+                    <Routers/>
                     </Card>
               </UserNameContext.Provider>
            </Row>

@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
+import './Chatroom.css'
 import {
     Card, Container, ListGroup, Button
   } from 'react-bootstrap'
-import { Link, useParams } from 'react-router-dom'
 
 const Chatrooms=()=>{
     const [chatrooms, setChatrooms]= useState([])
@@ -16,7 +16,7 @@ const Chatrooms=()=>{
     },[])
     return(
         <>
-        <Card className='' style={{
+        <Card style={{
             width: '15rem', 
             height:'100rem',
             backgroundColor: 'gray',
@@ -29,7 +29,16 @@ const Chatrooms=()=>{
             <Container style={{
                 bottom:0,
             }}>
-                <Link to='/newChatroom'>Create New Chatroom!</Link>
+                
+                <Button style={{
+                        "marginTop":'1rem',
+                        "borderRadius":'25px',
+                        'textAlign':'center',
+                        "backgroundColor":'#EDF5E1',
+                        'color':'#05386B'
+                    }}
+                    onClick={()=>window.location.assign('/newChatroom')}
+                    >Create New Chatroom</Button>
             </Container>
              <ListGroup variant='flush'>
                 {chatrooms.map(x=>{
@@ -49,6 +58,9 @@ const Chatrooms=()=>{
                 )
                 })}
             </ListGroup>
+            <div className='collaspeArrow'>
+                {'>'}
+            </div>
         </Card>
         </>
     )

@@ -3,7 +3,6 @@ import { Card } from "react-bootstrap";
 import GoogleLogin from "react-google-login";
 import {UserNameContext} from "../utils/LoginInfo";
 
-
 const Login=()=>{
     const {userInfo, setUserInfo} = useContext(UserNameContext)
     const handleFailure= (result) =>{

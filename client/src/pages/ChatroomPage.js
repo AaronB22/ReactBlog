@@ -13,6 +13,7 @@ import { useParams } from "react-router-dom";
 const ChatroomPage= ()=>{
     const newMsg= useRef()
     const d= new Date
+    console.log(d.getTimezoneOffset())
     const time={
         'hour': d.getHours(),
         'min': d.getMinutes()
@@ -25,7 +26,6 @@ const ChatroomPage= ()=>{
         fetch('/getChatRoomById/'+id).then(res=>{
            return res.json()
         }).then(data=>{
-            console.log(data[0])
             setChatroomTitle(data[0].name)
         })
     },[chatRoomTitle])
@@ -42,7 +42,6 @@ const ChatroomPage= ()=>{
     },[userInfo])
     useEffect(()=>{
        socket.once(id, msg=>{
-            console.log(msg)
             setMsgData([...msgData, msg])
             // newMsg.current.scrollIntoView({ behavior: 'smooth' });
        })
@@ -53,7 +52,8 @@ const ChatroomPage= ()=>{
        <div className="main">
             <Card.Title style={{
                 'fontSize':'2rem',
-                'textAlign':'center'
+                'textAlign':'center',
+                "textDecoration": 'underline',
             }}>
                {chatRoomTitle}
             </Card.Title>
@@ -64,16 +64,28 @@ const ChatroomPage= ()=>{
                             marginTop:'2rem',
                             textdecoration: 'underline',
                             border: 'none',
+                            backgroundColor: '#EDF5E1'
                         }}>
                             <Card.Title>
                                 {x.userInfo}
                                 <Card.Text  style={{
-                                    fontSize:'10px'
+                                    fontSize:'10px',
                                 }}>
                                     {`Posted ${time.hour}:${time.min}`}
                                 </Card.Text>
                             </Card.Title>
-                            {x.txtValue}
+                            <Card.Text style={{
+                                 backgroundColor: '#379683',
+                                 borderRadius: '25px',
+                                 width:"60%"
+                            }}>
+                                <Card.Text style={{
+                                    marginLeft:'2rem',
+                                    marginRight:'2rem'
+                                }}>
+                                    {x.txtValue}
+                                </Card.Text>
+                            </Card.Text>
                         </Card>
                         
                         </>
