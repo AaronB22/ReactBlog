@@ -10,7 +10,6 @@ import {
 } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Chatrooms from './Components/Chatroom';
-import SideBar from './Components/Sidebar-components/siderbar-index';
 import {SocketContext} from './utils/SocketProvider'
 import { UserIDContext } from './utils/LoginInfo';
 import { UserNameContext } from './utils/LoginInfo';
@@ -41,7 +40,6 @@ function App() {
           <Row style={{
             width: '100%'
           }}>
-            {/* <SideBar/> */}
             <Chatrooms/>
              <UserNameContext.Provider value={{userInfo, setUserInfo}}>
 
