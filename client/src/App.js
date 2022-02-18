@@ -30,7 +30,9 @@ function App() {
             <SocketContext.Provider>
                <UserIDContext.Provider>
                 <Router >
-          <Navbar bg="primary" expand='lg'>
+          <Navbar expand='lg' style={{
+            backgroundColor: '#3FEEE6'
+          }}>
             <Container>
             <Navbar.Brand ><Link to="/" className='text-black'>Home</Link></Navbar.Brand>
             <Navbar.Brand  ><Link to="/login" className='text-black'>{logInStatus}</Link></Navbar.Brand>

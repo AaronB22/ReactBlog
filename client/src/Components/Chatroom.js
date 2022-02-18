@@ -21,7 +21,7 @@ const Chatrooms=()=>{
             height:'100rem',
             backgroundColor: 'gray',
             padding:'0',
-            backgroundColor: '#97CAEF'
+            backgroundColor: '#55BCC9'
             }}>
             <Card.Title className='text-center fs-3 border-bottom border-dark'>
                 ChatRooms

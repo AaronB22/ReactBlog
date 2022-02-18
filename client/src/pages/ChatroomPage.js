@@ -11,7 +11,7 @@ import { UserNameContext } from "../utils/LoginInfo";
 import { useParams } from "react-router-dom";
 
 const ChatroomPage= ()=>{
-    const newMsg= useRef()
+    // const newMsg= useRef()
     const d= new Date
     console.log(d.getTimezoneOffset())
     const time={
@@ -87,7 +87,6 @@ const ChatroomPage= ()=>{
                                 </Card.Text>
                             </Card.Text>
                         </Card>
-                        
                         </>
                     )
                 })}
