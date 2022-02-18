@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom'
 import Routers from './Router';
 import React from 'react';
+import "./App.css"
 import { useEffect, useState, useContext } from "react";
 import {
   Navbar,
@@ -30,9 +31,7 @@ function App() {
             <SocketContext.Provider>
                <UserIDContext.Provider>
                 <Router >
-          <Navbar expand='lg' style={{
-            backgroundColor: '#3FEEE6'
-          }}>
+          <Navbar expand='lg' className="NvBar">
             <Container>
             <Navbar.Brand ><Link to="/" className='text-black'>Home</Link></Navbar.Brand>
             <Navbar.Brand  ><Link to="/login" className='text-black'>{logInStatus}</Link></Navbar.Brand>
@@ -45,10 +44,10 @@ function App() {
             <Chatrooms/>
              <UserNameContext.Provider value={{userInfo, setUserInfo}}>
 
-              <Card style={{
+              <Card className='App' style={{
             height:'100rem',
              width:'95rem',
-             backgroundColor: '#EDF5E1'
+            //  backgroundColor: '#EDF5E1'
               // marginLeft:'auto',
               //  marginRight:'auto',
                }}>
