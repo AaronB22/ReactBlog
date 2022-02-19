@@ -22,7 +22,9 @@ const ChatRoomIndex=()=>{
     if (windowWidth>=1400){
         return(
             <>
-            <Chatrooms/>
+            <Chatrooms
+                 classType='mainChatRoom'
+            />
             </>
         )
 
@@ -40,10 +42,14 @@ const ChatRoomIndex=()=>{
                     />
                 </span>
                 {(()=>{
-                    console.log('ye')
+                    if (collaspeChatRoom==='closed'){
+
+                    }
                     if(collaspeChatRoom==='open'){
                         return(
-                            <Chatrooms className='transparentChatRoom' />
+                            <Chatrooms 
+                                classType='transparentChatRoom'
+                            />
                         )
                     }
                 })()}

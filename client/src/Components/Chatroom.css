@@ -2,12 +2,18 @@
     font-size: 4rem;
 }
 .sideBar{
+    /* width: 15rem;
+    height:100rem;
+    padding:0;
+    margin: 0; */
+  
+}
+.mainChatRoom{
+    background: #950740;
     width: 15rem;
     height:100rem;
     padding:0;
     margin: 0;
-    background: #950740;
-  
 }
 .hamMen{
     position: absolute; 
@@ -16,6 +22,10 @@
     height: 4rem;
 }
 .transparentChatRoom{
-    position: absolute;
+    color:#950740;
+    width: 80%;
+    height: 100%;
+    position: fixed;
     z-index: 3;
+    background:#1A1A1D;
 }

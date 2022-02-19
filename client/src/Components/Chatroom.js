@@ -4,9 +4,9 @@ import {
     Card, Container, ListGroup, Button
   } from 'react-bootstrap'
 
-const Chatrooms=()=>{
+const Chatrooms=(props)=>{
+    const classType= props.classType
     const [chatrooms, setChatrooms]= useState([])
-    const [collaspeChatRoom, setCollaspeChatRoom]= useState([true])
  
     useEffect(()=>{
         fetch('/getChatRoomList').then(res=>{
@@ -18,7 +18,7 @@ const Chatrooms=()=>{
     },[])
     return(
         <>
-        <Card className='sideBar'>
+        <Card className='sideBar' className={classType}>
             <Card.Title className='text-center fs-3 border-bottom border-dark'>
                 ChatRooms
             </Card.Title>
