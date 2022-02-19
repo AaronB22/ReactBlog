@@ -1,9 +1,33 @@
 
 .App{
-    background: brown;
-    /* backgroundColor: blue; */
+    background: #1A1A1D ;
+    padding: 0;
+    margin: 0;
 }
 
 .NvBar{
-    background: #C3073F;
+    background: #4E4E50;
+    /* width: 50%; */
+    margin-left: auto;
+    margin-right: auto;
+}
+.main{
+    padding: 10;
+    margin: 0;
+}
+
+.mainBox{
+    /* flex-direction: column; */
+}
+
+.t{
+    display: flex;
+}
+
+.p{
+    margin: 0;
+    padding: 0;
+    flex: 1;
+    display: inline;
+    vertical-align: middle;
 }

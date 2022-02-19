@@ -16,12 +16,15 @@ const Chatrooms=()=>{
     },[])
     return(
         <>
-        <Card style={{
-            width: '15rem', 
-            height:'100rem',
-            backgroundColor: 'gray',
-            padding:'0',
-            backgroundColor: '#55BCC9'
+       <Button className='hamMen'>
+           TEST
+       </Button>
+
+        <Card className='sideBar' style={{
+            // width: '15rem', 
+            // height:'100rem',
+            // padding:'0',
+            
             }}>
             <Card.Title className='text-center fs-3 border-bottom border-dark'>
                 ChatRooms

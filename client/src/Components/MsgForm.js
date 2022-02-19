@@ -21,7 +21,7 @@ const MsgForm = (props)=>{
     return(
         <div className='position-fixed' style={{
             bottom:0,
-            width:'70rem',
+            width:'100%',
         }}>
        <InputGroup className="mt-3">
     <FormControl

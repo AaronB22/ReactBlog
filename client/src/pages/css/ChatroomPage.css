@@ -1,6 +1,12 @@
 .main{
-    height: 80vh;
-    overflow-y: scroll;
+    /* height: 80vh; */
+    height: inherit;
+    /* overflow-y: scroll; */
     display: flex;
     flex-direction: column;
+}
+.chatroombg{
+    background: #4E4E50;
+    margin: 0;
+    padding: 0;
 }

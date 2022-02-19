@@ -49,11 +49,14 @@ const ChatroomPage= ()=>{
     }, [msgData, id])
     
         return(
-       <div className="main">
+       <div className="main chatroombg">
             <Card.Title style={{
+                margin:'0',
+                padding:0,
                 'fontSize':'2rem',
                 'textAlign':'center',
                 "textDecoration": 'underline',
+                width:'100%'
             }}>
                {chatRoomTitle}
             </Card.Title>
