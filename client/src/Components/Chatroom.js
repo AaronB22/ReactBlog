@@ -7,14 +7,31 @@ import {
 const Chatrooms=(props)=>{
     const classType= props.classType
     const [chatrooms, setChatrooms]= useState([])
+    const [loaded, setLoaded]=useState(false)
     useEffect(()=>{
         fetch('/getChatRoomList').then(res=>{
            return res.json()
         }).then(data=>{
             console.log(data)
             setChatrooms(data)
+            setLoaded(true)
         })
     },[])
+    if(!loaded){
+        return(
+            <>
+            <Card className={classType}>
+                <Card.Text className='text-center'>
+                    <h2>
+                    ...Loading   
+                    </h2>
+                </Card.Text>
+            </Card>
+            </>
+        )
+    }
+
+    if(loaded){
     return(
         <>
         <Card className='sideBar' className={classType}>
@@ -46,12 +63,9 @@ const Chatrooms=(props)=>{
                 )
                 })}
             </ListGroup>
-            {/* <div className='collaspeArrow'>
-                {'>'}
-            </div> */}
         </Card>
         </>
-    )
+    )}
 
 }
 
