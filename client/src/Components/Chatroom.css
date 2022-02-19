@@ -10,18 +10,9 @@
   
 }
 .hamMen{
-    display: none;
+    position: absolute; 
     height: 5rem;
+    z-index: 2;
+    height: 4rem;
 }
 
-
-@media screen and (max-width:1000px){
-    .sideBar{
-        background: blue;
-        display: none;
-    }
-    .hamMen{
-        /* position:fixed; */
-        display: initial;
-    }
-}

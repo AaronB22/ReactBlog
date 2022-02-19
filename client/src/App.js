@@ -16,16 +16,35 @@ import NavBarComp from './Components/NavBarComp';
 import {SocketContext} from './utils/SocketProvider'
 import { UserIDContext } from './utils/LoginInfo';
 import { UserNameContext } from './utils/LoginInfo';
+import ChatRoomIndex from './Components/ChatroomIndex';
 
 
 function App() {
+  const styleTest={
+    "backgroundColor":"pink"
+  }
+  // const [chatRoomCollaspe, setChatroomCollaspe]=useState('initial')
   const [userInfo, setUserInfo]= useState(null)
   const [logInStatus, setLogInStatus] = useState('Login')
+  // const getWindowWidth=()=>{
+  //   const {innerWidth: width}= window;
+  //   return(
+  //     width
+  //   )
+  // }
+  // const [windowWidth, setWindowWidth] =useState(getWindowWidth)
+  // useEffect(()=>{
+  //   setWindowWidth(getWindowWidth())
+  // })
+
+
   useEffect(()=>{
     if(userInfo){
       setLogInStatus(null)
     }
   },[userInfo])
+
+  //responsive
 
 
   return (
@@ -33,14 +52,6 @@ function App() {
             <SocketContext.Provider>
                <UserIDContext.Provider>
                 <Router >
-          {/* <Navbar expand='lg' className="NvBar">
-            <Container>
-            <Navbar.Brand ><Link to="/" className='text-black'>Home</Link></Navbar.Brand>
-            <Navbar.Brand  ><Link to="/login" className='text-black'>{logInStatus}</Link></Navbar.Brand>
-            <Navbar.Brand ><Link to="/" className='text-black'>{userInfo}</Link></Navbar.Brand>
-            </Container>
-          </Navbar> */}
-
           <Row style={{
             width: '100%',
             margin:'0',
@@ -51,7 +62,8 @@ function App() {
               margin:'0',
               padding:'0'
             }}>
-              <Chatrooms className='p' />
+              
+              {/* <Chatrooms className='p'/> */}            <ChatRoomIndex className='p' />
               <div className='p'>
                <NavBarComp/>
                 <Card className='main' style={{
