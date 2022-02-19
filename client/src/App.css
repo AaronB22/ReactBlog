@@ -10,9 +10,6 @@
     margin: 0;
 }
 
-.mainBox{
-    /* flex-direction: column; */
-}
 
 .parent{
     display: flex;

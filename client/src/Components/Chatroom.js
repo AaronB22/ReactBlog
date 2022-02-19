@@ -7,7 +7,6 @@ import {
 const Chatrooms=(props)=>{
     const classType= props.classType
     const [chatrooms, setChatrooms]= useState([])
- 
     useEffect(()=>{
         fetch('/getChatRoomList').then(res=>{
            return res.json()
@@ -33,11 +32,12 @@ const Chatrooms=(props)=>{
                 </Button>
             </Container>
              <ListGroup variant='flush'>
-                {chatrooms.map(x=>{
+                {chatrooms.map((x)=>{
                     const url= `/chatroom/${x._id}`
                 return(
                     <Button 
                     className='linkBtnChatroom'
+                    key={x._id}
                     onClick={()=>{
                         window.location.assign(url) 
                     }}>
@@ -46,9 +46,9 @@ const Chatrooms=(props)=>{
                 )
                 })}
             </ListGroup>
-            <div className='collaspeArrow'>
+            {/* <div className='collaspeArrow'>
                 {'>'}
-            </div>
+            </div> */}
         </Card>
         </>
     )

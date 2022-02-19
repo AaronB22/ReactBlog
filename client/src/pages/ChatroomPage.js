@@ -13,7 +13,7 @@ import { useParams } from "react-router-dom";
 const ChatroomPage= ()=>{
     // const newMsg= useRef()
     const d= new Date
-    console.log(d.getTimezoneOffset())
+    // console.log(d.getTimezoneOffset())
     const time={
         'hour': d.getHours(),
         'min': d.getMinutes()

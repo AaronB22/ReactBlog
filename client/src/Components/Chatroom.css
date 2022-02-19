@@ -28,6 +28,16 @@
     border-color: #950740;
 }
 
+.clbtn{
+    z-index: 4 ;
+    color:#950740;
+    font-size: 1rem;
+    position: absolute; 
+    height: 3rem;
+    
+    
+    
+}
 .hamMen{
     position: absolute; 
     height: 5rem;
@@ -41,4 +51,11 @@
     position: fixed;
     z-index: 3;
     background:#1A1A1D;
+}
+
+.open{
+    display: initial;
+}
+.closed{
+    display: none;
 }

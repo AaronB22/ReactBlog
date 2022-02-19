@@ -20,20 +20,17 @@ import ChatRoomIndex from './Components/ChatroomIndex';
 
 
 function App() {
-  const [userInfo, setUserInfo]= useState(null)
-  const [logInStatus, setLogInStatus] = useState('Login')
-
+  const [userInfo, setUserInfo]= useState(null);
+  const [logInStatus, setLogInStatus] = useState('Login');
+  const [userClickOnApp, setUserClickOnApp]= useState();
   useEffect(()=>{
     if(userInfo){
       setLogInStatus(null)
     }
   },[userInfo])
 
-  //responsive
-
-
   return (
-        <div className='App'>
+        <div className='App' >
             <SocketContext.Provider>
                <UserIDContext.Provider>
                 <Router >
@@ -57,7 +54,7 @@ function App() {
               padding:'0',
               backgroundColor:'#4E4E50'
                 }}>
-                      <Routers/>
+                      <Routers />
                       </Card>
 
               </div>
