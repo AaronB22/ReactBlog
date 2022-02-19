@@ -25,27 +25,19 @@ const Chatrooms=(props)=>{
             <Container style={{
                 bottom:0,
             }}>
-                
-                <Button style={{
-                        "marginTop":'1rem',
-                        "borderRadius":'25px',
-                        'textAlign':'center',
-                        "backgroundColor":'#EDF5E1',
-                        'color':'#05386B'
-                    }}
-                    onClick={()=>window.location.assign('/newChatroom')}
-                    >Create New Chatroom</Button>
+                <Button
+                  className="linkBtn"  
+                onClick={()=>window.location.assign('/newChatroom')}
+                >
+                    Create New Chatroom
+                </Button>
             </Container>
              <ListGroup variant='flush'>
                 {chatrooms.map(x=>{
                     const url= `/chatroom/${x._id}`
                 return(
-                    <Button style={{
-                        "marginTop":'1rem',
-                        "borderRadius":'25px',
-                        'textAlign':'center',
-                        "backgroundColor":'#FC4445'
-                    }}
+                    <Button 
+                    className='linkBtnChatroom'
                     onClick={()=>{
                         window.location.assign(url) 
                     }}>

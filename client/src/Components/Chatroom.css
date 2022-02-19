@@ -9,12 +9,31 @@
   
 }
 .mainChatRoom{
-    background: #950740;
+    color:#950740;
+    background:#1A1A1D;
     width: 15rem;
     height:100rem;
     padding:0;
     margin: 0;
 }
+.linkBtn{
+    margin-top:1rem;
+    border-radius:25px;
+    text-align:center;
+    background-color:#4E4E50;
+    color:white;
+    border-color: #950740;
+}
+.linkBtnChatroom{
+    margin-top:2rem;
+    /* border-radius:25px; */
+    text-align:center;
+    background-color:#1A1A1D;
+    color:white;
+    border-bottom: 0px;
+    border-color: #950740;
+}
+
 .hamMen{
     position: absolute; 
     height: 5rem;
