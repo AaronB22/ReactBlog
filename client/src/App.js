@@ -20,23 +20,8 @@ import ChatRoomIndex from './Components/ChatroomIndex';
 
 
 function App() {
-  const styleTest={
-    "backgroundColor":"pink"
-  }
-  // const [chatRoomCollaspe, setChatroomCollaspe]=useState('initial')
   const [userInfo, setUserInfo]= useState(null)
   const [logInStatus, setLogInStatus] = useState('Login')
-  // const getWindowWidth=()=>{
-  //   const {innerWidth: width}= window;
-  //   return(
-  //     width
-  //   )
-  // }
-  // const [windowWidth, setWindowWidth] =useState(getWindowWidth)
-  // useEffect(()=>{
-  //   setWindowWidth(getWindowWidth())
-  // })
-
 
   useEffect(()=>{
     if(userInfo){
@@ -58,13 +43,13 @@ function App() {
             padding:'0',
           }}>
              <UserNameContext.Provider value={{userInfo, setUserInfo}}>
-            <span className='t' style={{
+            <span className='parent' style={{
               margin:'0',
               padding:'0'
             }}>
               
-              {/* <Chatrooms className='p'/> */}            <ChatRoomIndex className='p' />
-              <div className='p'>
+           <ChatRoomIndex className='child' />
+              <div className='child'>
                <NavBarComp/>
                 <Card className='main' style={{
               height:'100rem',

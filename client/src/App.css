@@ -5,12 +5,6 @@
     margin: 0;
 }
 
-.NvBar{
-    background: #4E4E50;
-    /* width: 50%; */
-    margin-left: auto;
-    margin-right: auto;
-}
 .main{
     padding: 10;
     margin: 0;
@@ -20,14 +14,26 @@
     /* flex-direction: column; */
 }
 
-.t{
+.parent{
     display: flex;
 }
 
-.p{
+.child{
     margin: 0;
     padding: 0;
     flex: 1;
     display: inline;
     vertical-align: middle;
+}
+
+.Title{
+    color:#C3073F;
+    font-family: 'Courgette', cursive;
+}
+
+@media screen and (max-width:400px) {
+    .Title{
+        font-size: 12px;
+        margin-top: auto;
+    }
 }
