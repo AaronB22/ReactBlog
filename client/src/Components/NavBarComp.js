@@ -4,8 +4,8 @@ import { useEffect, useState, useContext } from "react";
 import { UserNameContext } from "../utils/LoginInfo";
 import './NavBar.css'
 const NavBarComp=()=>{
-    // const {userInfo, setUserInfo} = useContext(UserNameContext)
-    // console.log(userInfo)
+    const {userInfo, setUserInfo} = useContext(UserNameContext)
+    console.log(userInfo)
     const [userInfoState, setUserInfoState]= useState(null)
     const [logInStatus, setLogInStatus] = useState('Login')
     useEffect(()=>{
@@ -23,7 +23,19 @@ const NavBarComp=()=>{
             <h1 className="Title">
                 React Blog
             </h1>
-            <Navbar.Brand  ><Link to="/login" className='text-black linkText'>{logInStatus}</Link></Navbar.Brand>
+            <Navbar.Brand  >
+                {(()=>{
+                    if(userInfo){
+                        return(
+                        <Link to="/login" className='text-black linkText'>{userInfo}</Link>)
+                    }
+                    else return(
+                        <Link to="/login" className='text-black linkText'>Login</Link>
+                    )
+                })()}
+                
+                
+                </Navbar.Brand>
             {/* <Navbar.Brand ><Link to="/" className='text-black'>{userInfoState}</Link></Navbar.Brand> */}
             </Container>
           </Navbar>

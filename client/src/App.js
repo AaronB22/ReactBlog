@@ -24,14 +24,21 @@ function App() {
   const [logInStatus, setLogInStatus] = useState('Login');
   const [userClickOnApp, setUserClickOnApp]= useState();
   useEffect(()=>{
-    if(userInfo){
-      setLogInStatus(null)
+    const loginData=window.localStorage.getItem('loginInfo')
+    const parsedLoginInfo= JSON.parse(loginData)
+    if(parsedLoginInfo){
+      console.log(parsedLoginInfo)
+      setUserInfo(parsedLoginInfo.name)
     }
-  },[userInfo])
+    // if(userInfo){
+    //   setLogInStatus(null)
+    // }
+  },[])
 
   return (
         <div className='App' >
             <SocketContext.Provider>
+            <UserNameContext.Provider value={{userInfo, setUserInfo}}>
                <UserIDContext.Provider>
                 <Router >
           <Row style={{
@@ -39,7 +46,6 @@ function App() {
             margin:'0',
             padding:'0',
           }}>
-             <UserNameContext.Provider value={{userInfo, setUserInfo}}>
             <span className='parent' style={{
               margin:'0',
               padding:'0'
@@ -59,10 +65,10 @@ function App() {
 
               </div>
                     </span>   
-              </UserNameContext.Provider>
            </Row>
                 </Router>
                 </UserIDContext.Provider>
+              </UserNameContext.Provider>
             </SocketContext.Provider>
         </div>
   );
