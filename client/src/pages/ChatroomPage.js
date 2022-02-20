@@ -14,9 +14,14 @@ const ChatroomPage= ()=>{
     // const newMsg= useRef()
     const d= new Date
     // console.log(d.getTimezoneOffset())
+    let min= d.getMinutes();
+    console.log(min)
+    if(min<10){
+        min='0'+min
+    }
     const time={
         'hour': d.getHours(),
-        'min': d.getMinutes()
+        'min': min
     }
     const {userInfo, setUserInfo} = useContext(UserNameContext)
     const [msgData, setMsgData] = useState([])
@@ -63,11 +68,9 @@ const ChatroomPage= ()=>{
                 {msgData.map((x)=>{
                     return (
                         <>
-                        <Card className="test" style={{
-                            marginTop:'2rem',
-                            textdecoration: 'underline',
-                            border: 'none',
-                            backgroundColor: '#EDF5E1'
+                        <Card className="mainMsgBox" style={{
+                            backgroundColor:'#4E4E50',
+                            borderTop:'0'
                         }}>
                             <Card.Title>
                                 {x.userInfo}
@@ -78,8 +81,7 @@ const ChatroomPage= ()=>{
                                 </Card.Text>
                             </Card.Title>
                             <Card.Text style={{
-                                 backgroundColor: '#55BCC9',
-                                 borderRadius: '25px',
+                                 backgroundColor: '#4E4E50',
                                  width:"60%"
                             }}>
                                 <Card.Text style={{

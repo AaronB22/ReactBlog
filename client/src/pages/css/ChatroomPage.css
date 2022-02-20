@@ -10,3 +10,11 @@
     margin: 0;
     padding: 0;
 }
+
+.mainMsgBox{
+    margin-top: 2rem;
+    border:none;
+    background:#383838;
+    color: whitesmoke;
+    border-color: #4E4E50;
+}
