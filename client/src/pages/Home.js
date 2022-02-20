@@ -10,7 +10,9 @@ const Home=()=>{
 
     return(
         <>
-            <Card className="titleBx">
+            <Card className="titleBx" style={{
+                backgroundColor:'#C3073F'
+            }}>
                 <h1 >Welcome To This React Blog!</h1>
             
             </Card>
