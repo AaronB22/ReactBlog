@@ -1,0 +1,33 @@
+.NvBar{
+    background: #4E4E50;
+    /* width: 50%; */
+    margin-left: auto;
+    margin-right: auto;
+}
+.linkText{
+    font-size: 2.5rem;
+}
+.mainCon{
+    width: 80%;
+}
+
+@media screen and (max-width: 680px) {
+   .linkText{
+       font-size: 2rem;
+   }
+}
+
+@media screen and (max-width: 600px) {
+    .mainCon{
+        width: 80%;
+    }
+    .linkText{
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width: 290px) {
+    .linkText{
+        font-size: 16px;
+    }
+ }

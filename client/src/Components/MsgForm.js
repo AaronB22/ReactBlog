@@ -6,6 +6,7 @@ import {
 import { UserNameContext } from '../utils/LoginInfo';
 import { useContext } from 'react';
 import { useParams } from "react-router-dom";
+import './MsgForm.css'
 
 const MsgForm = (props)=>{
     const {userInfo} = useContext(UserNameContext)
@@ -19,10 +20,7 @@ const MsgForm = (props)=>{
     }
     
     return(
-        <div className='position-fixed' style={{
-            bottom:0,
-            width:'70rem',
-        }}>
+        <div className='position-fixed msgBar' >
        <InputGroup className="mt-3">
     <FormControl
       placeholder="message..."

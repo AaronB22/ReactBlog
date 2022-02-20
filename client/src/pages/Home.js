@@ -3,34 +3,52 @@ import './css/Home.css'
 import { 
     Card,
     Container,
-    Row
+    Row,
+    Button
 } from "react-bootstrap";
 const Home=()=>{
 
     return(
         <>
             <Card className="titleBx" style={{
-                backgroundColor: 'blue'
+                backgroundColor:'#C3073F'
             }}>
-                <h1>Welcome To This React Blog!</h1>
+                <h1 >Welcome To This React Blog!</h1>
             
             </Card>
-            <Row>
-                <Container>
-                    <Card>
-                        <h3>
+            <Container className="HomeCont" style={{
+                marginTop: '10rem'
+            }}>
+                    <Card className="homeCard signUpCard" style={{
+                        backgroundColor:'#1A1A1D',
+                        color:'#C3073F'
+                    }}>
+                        <h3 className="boxTitle" >
                             Sign Up!
                         </h3>
+                        <p className="txtofbox">
+                            Click the button below to create an account!
+                        </p>
+                        <button className="boxBtn">
+                            Sign Up
+                        </button>
                     </Card>
-                </Container>
-                <Container>
-                    <Card>
-                        <h3>
+                    <Card  className="homeCard LogInCard" style={{
+                        backgroundColor:'#1A1A1D',
+                        color:'#C3073F'
+                    }}>
+                        <h3 className="boxTitle">
                             Log In!
                         </h3>
+                        <p className="txtofbox" >
+                            Already have an Account? Click the Button Below to sign in!
+                        </p>
+                        <button className="boxBtn">
+                            Login
+                        </button>
                     </Card>
-                </Container>
-            </Row>
+    
+            </Container>
         </>
     )
 }

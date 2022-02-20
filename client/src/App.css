@@ -1,0 +1,36 @@
+
+.App{
+    background: #1A1A1D ;
+    padding: 0;
+    margin: 0;
+}
+
+.main{
+    padding: 10;
+    margin: 0;
+}
+
+
+.parent{
+    display: flex;
+}
+
+.child{
+    margin: 0;
+    padding: 0;
+    flex: 1;
+    display: inline;
+    vertical-align: middle;
+}
+
+.Title{
+    color:#C3073F;
+    font-family: 'Courgette', cursive;
+}
+
+@media screen and (max-width:400px) {
+    .Title{
+        font-size: 12px;
+        margin-top: auto;
+    }
+}

@@ -11,12 +11,17 @@ import { UserNameContext } from "../utils/LoginInfo";
 import { useParams } from "react-router-dom";
 
 const ChatroomPage= ()=>{
-    const newMsg= useRef()
+    // const newMsg= useRef()
     const d= new Date
-    console.log(d.getTimezoneOffset())
+    // console.log(d.getTimezoneOffset())
+    let min= d.getMinutes();
+    console.log(min)
+    if(min<10){
+        min='0'+min
+    }
     const time={
         'hour': d.getHours(),
-        'min': d.getMinutes()
+        'min': min
     }
     const {userInfo, setUserInfo} = useContext(UserNameContext)
     const [msgData, setMsgData] = useState([])
@@ -49,22 +54,23 @@ const ChatroomPage= ()=>{
     }, [msgData, id])
     
         return(
-       <div className="main">
+       <div className="main chatroombg">
             <Card.Title style={{
+                margin:'0',
+                padding:0,
                 'fontSize':'2rem',
                 'textAlign':'center',
                 "textDecoration": 'underline',
+                width:'100%'
             }}>
                {chatRoomTitle}
             </Card.Title>
                 {msgData.map((x)=>{
                     return (
                         <>
-                        <Card className="test" style={{
-                            marginTop:'2rem',
-                            textdecoration: 'underline',
-                            border: 'none',
-                            backgroundColor: '#EDF5E1'
+                        <Card className="mainMsgBox" style={{
+                            backgroundColor:'#4E4E50',
+                            borderTop:'0'
                         }}>
                             <Card.Title>
                                 {x.userInfo}
@@ -75,8 +81,7 @@ const ChatroomPage= ()=>{
                                 </Card.Text>
                             </Card.Title>
                             <Card.Text style={{
-                                 backgroundColor: '#379683',
-                                 borderRadius: '25px',
+                                 backgroundColor: '#4E4E50',
                                  width:"60%"
                             }}>
                                 <Card.Text style={{
@@ -87,7 +92,6 @@ const ChatroomPage= ()=>{
                                 </Card.Text>
                             </Card.Text>
                         </Card>
-                        
                         </>
                     )
                 })}
