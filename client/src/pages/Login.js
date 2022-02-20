@@ -17,6 +17,24 @@ const Login=()=>{
         setUserInfo(googleData.profileObj.name)
         // window.localStorage.removeItem('loginInfo')
         window.localStorage.setItem('loginInfo', JSON.stringify(googleObj))
+        const url='getUser/'+ googleObj.googleId
+        fetch(url).then((res)=>{
+            return res.json()
+        }).then((data)=>{
+            if(!data.length){
+                fetch('/newUser', {
+                    method: 'POST',
+                    body: JSON.stringify(googleObj),
+                    headers: {
+                        Accept: 'application/json, text/plain, */*',
+                        'Content-Type': 'application/json',
+                      }
+                    }).then((res)=>{
+                        return res.json()
+                    })
+            }
+        })
+
     }
     return(
         <>
