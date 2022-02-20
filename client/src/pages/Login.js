@@ -6,15 +6,16 @@ import {UserNameContext} from "../utils/LoginInfo";
 const Login=()=>{
     const {userInfo, setUserInfo} = useContext(UserNameContext)
     const handleFailure= (result) =>{
+        console.log('FAIL TO GET GOOGLE DATA')
         alert(result)
     }
     const handleLogin= (googleData) =>{
-       console.log(googleData)
        const googleObj= {
          "googleId": googleData.googleId,
          "name": googleData.profileObj.name
        }
         setUserInfo(googleData.profileObj.name)
+        // window.localStorage.removeItem('loginInfo')
         window.localStorage.setItem('loginInfo', JSON.stringify(googleObj))
     }
     return(

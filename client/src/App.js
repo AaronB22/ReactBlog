@@ -13,8 +13,7 @@ import {
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Chatrooms from './Components/Chatroom';
 import NavBarComp from './Components/NavBarComp';
-import {SocketContext} from './utils/SocketProvider'
-import { UserIDContext } from './utils/LoginInfo';
+import {SocketContext} from './utils/SocketProvider';
 import { UserNameContext } from './utils/LoginInfo';
 import ChatRoomIndex from './Components/ChatroomIndex';
 
@@ -24,22 +23,27 @@ function App() {
   const [logInStatus, setLogInStatus] = useState('Login');
   const [userClickOnApp, setUserClickOnApp]= useState();
   useEffect(()=>{
-    if(userInfo){
-      setLogInStatus(null)
+    const loginData=window.localStorage.getItem('loginInfo')
+    const parsedLoginInfo= JSON.parse(loginData)
+    if(parsedLoginInfo){
+      console.log(parsedLoginInfo)
+      setUserInfo(parsedLoginInfo.name)
     }
-  },[userInfo])
+    // if(userInfo){
+    //   setLogInStatus(null)
+    // }
+  },[])
 
   return (
         <div className='App' >
             <SocketContext.Provider>
-               <UserIDContext.Provider>
+            <UserNameContext.Provider value={{userInfo, setUserInfo}}>
                 <Router >
           <Row style={{
             width: '100%',
             margin:'0',
             padding:'0',
           }}>
-             <UserNameContext.Provider value={{userInfo, setUserInfo}}>
             <span className='parent' style={{
               margin:'0',
               padding:'0'
@@ -59,10 +63,9 @@ function App() {
 
               </div>
                     </span>   
-              </UserNameContext.Provider>
            </Row>
                 </Router>
-                </UserIDContext.Provider>
+              </UserNameContext.Provider>
             </SocketContext.Provider>
         </div>
   );
