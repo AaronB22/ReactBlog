@@ -13,8 +13,7 @@ import {
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Chatrooms from './Components/Chatroom';
 import NavBarComp from './Components/NavBarComp';
-import {SocketContext} from './utils/SocketProvider'
-import { UserIDContext } from './utils/LoginInfo';
+import {SocketContext} from './utils/SocketProvider';
 import { UserNameContext } from './utils/LoginInfo';
 import ChatRoomIndex from './Components/ChatroomIndex';
 
@@ -39,7 +38,6 @@ function App() {
         <div className='App' >
             <SocketContext.Provider>
             <UserNameContext.Provider value={{userInfo, setUserInfo}}>
-               <UserIDContext.Provider>
                 <Router >
           <Row style={{
             width: '100%',
@@ -67,7 +65,6 @@ function App() {
                     </span>   
            </Row>
                 </Router>
-                </UserIDContext.Provider>
               </UserNameContext.Provider>
             </SocketContext.Provider>
         </div>
