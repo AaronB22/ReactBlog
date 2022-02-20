@@ -10,71 +10,42 @@ const Home=()=>{
 
     return(
         <>
-            <Card className="titleBx" style={{
-                backgroundImage: 'linear-gradient(to right,#FC4445, #3FEEE6,#55BCC9)'
-            }}>
-                <h1>Welcome To This React Blog!</h1>
+            <Card className="titleBx">
+                <h1 >Welcome To This React Blog!</h1>
             
             </Card>
-            <Container style={{
-                marginLeft: 'auto',
-                marginRight: 'auto',
+            <Container className="HomeCont" style={{
                 marginTop: '10rem'
             }}>
-                <Row >
-                    <Card style={{
-                        width:'33%',
-                        marginLeft:'5rem',
-                        height:'20rem',
-                        backgroundImage: 'linear-gradient(#FC4445, #3FEEE6)'
+                    <Card className="homeCard signUpCard" style={{
+                        backgroundColor:'#1A1A1D',
+                        color:'#C3073F'
                     }}>
-                        <h3 style={{
-                            textAlign:'center',
-                            fontSize: '3rem'
-                        }}>
+                        <h3 className="boxTitle" >
                             Sign Up!
                         </h3>
-                        <p style={{
-                            textAlign:"center",
-                            fontSize:'2rem',
-                            height:'8rem'
-                        }}>
+                        <p className="txtofbox">
                             Click the button below to create an account!
                         </p>
-                        <Button style={{
-                            borderRadius:'25px',
-                            fontSize:'2rem',
-                        }}>
+                        <button className="boxBtn">
                             Sign Up
-                        </Button>
+                        </button>
                     </Card>
-                    <Card style={{
-                        width:'33%',
-                        marginLeft:'5rem',
-                        height:'20rem',
-                        backgroundImage: 'linear-gradient(#FC4445, #3FEEE6)'
+                    <Card  className="homeCard LogInCard" style={{
+                        backgroundColor:'#1A1A1D',
+                        color:'#C3073F'
                     }}>
-                        <h3 style={{
-                             fontSize: '3rem',
-                            textAlign:'center'
-                        }}>
+                        <h3 className="boxTitle">
                             Log In!
                         </h3>
-                        <p style={{
-                            textAlign:"center",
-                            fontSize:'2rem',
-                            height:'8rem'
-                        }}>
+                        <p className="txtofbox" >
                             Already have an Account? Click the Button Below to sign in!
                         </p>
-                        <Button style={{
-                            borderRadius:'25px',
-                            fontSize:'2rem',
-                        }}>
+                        <button className="boxBtn">
                             Login
-                        </Button>
+                        </button>
                     </Card>
-                </Row>
+    
             </Container>
         </>
     )
