@@ -1,10 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
 import GoogleLogin from "react-google-login";
-import {UserNameContext} from "../utils/LoginInfo";
+import {UserNameContext, UserIdContext} from "../utils/LoginInfo";
 
 const Login=()=>{
     const {userInfo, setUserInfo} = useContext(UserNameContext)
+    const {userId, setUserId}= useContext(UserIdContext)
     const handleFailure= (result) =>{
         console.log('FAIL TO GET GOOGLE DATA')
         alert(result)
@@ -12,7 +13,7 @@ const Login=()=>{
     const handleLogin= (googleData) =>{
        const googleObj= {
          "googleId": googleData.googleId,
-         "name": googleData.profileObj.name
+         "name": googleData.profileObj.name,
        }
         setUserInfo(googleData.profileObj.name)
         // window.localStorage.removeItem('loginInfo')
@@ -31,7 +32,14 @@ const Login=()=>{
                       }
                     }).then((res)=>{
                         return res.json()
+                    }).then((data)=>{
+                        console.log(data)
+                        setUserId(data[0]._id)
+                        window.localStorage.setItem('userId',data[0]._id)
                     })
+            }
+            else{
+                setUserId(data[0]._id)
             }
         })
 

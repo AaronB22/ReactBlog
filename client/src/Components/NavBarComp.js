@@ -5,7 +5,6 @@ import { UserNameContext } from "../utils/LoginInfo";
 import './NavBar.css'
 const NavBarComp=()=>{
     const {userInfo, setUserInfo} = useContext(UserNameContext)
-    console.log(userInfo)
     const [userInfoState, setUserInfoState]= useState(null)
     const [logInStatus, setLogInStatus] = useState('Login')
     useEffect(()=>{

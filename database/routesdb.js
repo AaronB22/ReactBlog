@@ -1,6 +1,7 @@
 const router =require('express').Router()
 const Chatroom = require('./models/Chatrooms')
 const User= require('./models/User')
+const Follow= require('./models/Followers')
 
 router.get('/getChatRoomList', async(req, res)=>{
     const q= await Chatroom.find()
@@ -46,6 +47,11 @@ router.post('/newUser', ({body},res)=>{
         .then(x=>{
             res.json(x)
         })
+})
+
+router.get('/getFollow/:id',async (req, res)=>{
+    const params=req.params.id;
+    const q=await Follow.find({}).where('id').equals(params)
 })
 
 

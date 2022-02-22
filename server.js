@@ -26,6 +26,7 @@ app.use(require("./database/routesdb"))
 io.on("connection", socket =>{
   console.log('USER CONNECTED')
   socket.on('send-msg', (msgObj)=>{
+    console.log(msgObj)
     const chatroomId=msgObj.id
       console.log('getting msg')
     io.emit(chatroomId, msgObj)
