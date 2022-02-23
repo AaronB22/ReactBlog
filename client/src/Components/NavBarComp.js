@@ -1,19 +1,21 @@
 import { Navbar, Container, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
-import { UserNameContext } from "../utils/LoginInfo";
+import { UserNameContext, UserIdContext } from "../utils/LoginInfo";
 import './NavBar.css'
 const NavBarComp=()=>{
     const {userInfo, setUserInfo} = useContext(UserNameContext)
+    const {userId, setUserId}= useContext(UserIdContext)
     const [userInfoState, setUserInfoState]= useState(null)
     const [logInStatus, setLogInStatus] = useState('Login')
     useEffect(()=>{
-      if(userInfoState){
-        setLogInStatus(null)
-      }
+        if(userInfoState){
+            setLogInStatus(null)
+        }
     },[userInfoState])
 
 
+    const url='/profile/'+userId
     return(
         <>
         <Navbar expand='lg' className="NvBar">
@@ -26,7 +28,7 @@ const NavBarComp=()=>{
                 {(()=>{
                     if(userInfo){
                         return(
-                        <Link to="/login" className='text-black linkText'>{userInfo}</Link>)
+                        <Link to={url} className='text-black linkText'>{userInfo}</Link>)
                     }
                     else return(
                         <Link to="/login" className='text-black linkText'>Login</Link>
