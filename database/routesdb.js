@@ -42,6 +42,14 @@ router.get('/getUser/:id', async(req, res)=>{
     res.json(q)
 })
 
+router.get('/getUserByUserName/:name', async(req, res)=>{
+    const params=req.params.name;
+    const q=await User.find({}).where('userName').equals(params)
+    res.json(q)
+})
+
+
+
 router.post('/newUser', ({body},res)=>{
     User.insertMany(body)
         .then(x=>{

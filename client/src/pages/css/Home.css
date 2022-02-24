@@ -29,7 +29,9 @@
     border:#C3073F ;
     margin-top: auto;
 }
-
+.googleBtn{
+    margin: auto;
+}
 .homeCard{
     position: relative;
     margin-left: auto;

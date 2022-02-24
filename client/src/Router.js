@@ -18,7 +18,7 @@ const Routers=()=>{
             <Route exact path='/' element={
                 <Home/>
             }/>
-            <Route exact path='/profile' element={
+            <Route path='/profile/:id' element={
                 <ProfilePage/>
             }/>
             

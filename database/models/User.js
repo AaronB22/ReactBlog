@@ -10,6 +10,10 @@ const userSchema = new Schema({
         type: String,
         trim: true
     },
+    userName:{
+        type:String,
+        unique: true
+    }
 })
 
 const User= mongoose.model("User", userSchema)

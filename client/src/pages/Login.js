@@ -1,9 +1,16 @@
 import { useContext, useEffect, useState } from "react";
-import { Card } from "react-bootstrap";
 import GoogleLogin from "react-google-login";
 import {UserNameContext, UserIdContext} from "../utils/LoginInfo";
+import {
+    InputGroup,
+    FormControl,
+    Button,
+    Card
+} from 'react-bootstrap';
 
 const Login=()=>{
+    const [newUser, setNewUser]=useState(false)
+    const [accountInfo, setAccountInfo]= useState()
     const {userInfo, setUserInfo} = useContext(UserNameContext)
     const {userId, setUserId}= useContext(UserIdContext)
     const handleFailure= (result) =>{
@@ -16,13 +23,16 @@ const Login=()=>{
          "name": googleData.profileObj.name,
        }
         setUserInfo(googleData.profileObj.name)
+        setAccountInfo(googleObj)
         // window.localStorage.removeItem('loginInfo')
         window.localStorage.setItem('loginInfo', JSON.stringify(googleObj))
         const url='getUser/'+ googleObj.googleId
         fetch(url).then((res)=>{
             return res.json()
-        }).then((data)=>{
-            if(!data.length){
+        })
+        .then((data)=>{
+            if(data.length){
+                setNewUser(true)
                 fetch('/newUser', {
                     method: 'POST',
                     body: JSON.stringify(googleObj),
@@ -65,6 +75,7 @@ const Login=()=>{
             >
 
                 </GoogleLogin>
+                        
             </Card>
         </Card>
         </>
