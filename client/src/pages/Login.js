@@ -10,7 +10,6 @@ import {
 
 const Login=()=>{
     const [newUser, setNewUser]=useState(false)
-    const [accountInfo, setAccountInfo]= useState()
     const {userInfo, setUserInfo} = useContext(UserNameContext)
     const {userId, setUserId}= useContext(UserIdContext)
     const handleFailure= (result) =>{
@@ -23,7 +22,6 @@ const Login=()=>{
          "name": googleData.profileObj.name,
        }
         setUserInfo(googleData.profileObj.name)
-        setAccountInfo(googleObj)
         // window.localStorage.removeItem('loginInfo')
         window.localStorage.setItem('loginInfo', JSON.stringify(googleObj))
         const url='getUser/'+ googleObj.googleId
@@ -31,25 +29,11 @@ const Login=()=>{
             return res.json()
         })
         .then((data)=>{
-            if(data.length){
-                setNewUser(true)
-                fetch('/newUser', {
-                    method: 'POST',
-                    body: JSON.stringify(googleObj),
-                    headers: {
-                        Accept: 'application/json, text/plain, */*',
-                        'Content-Type': 'application/json',
-                      }
-                    }).then((res)=>{
-                        return res.json()
-                    }).then((data)=>{
-                        console.log(data)
-                        setUserId(data[0]._id)
-                        window.localStorage.setItem('userId',data[0]._id)
-                    })
+            if(data.length===0){
+                window.location.assign('/createNewUser')
             }
             else{
-                setUserId(data[0]._id)
+                
             }
         })
 
@@ -78,6 +62,25 @@ const Login=()=>{
                         
             </Card>
         </Card>
+
+        {(()=>{
+            if(newUser){
+                return(
+                    <InputGroup className="mt-3">
+                    <FormControl
+                      placeholder="create a username..."
+                      aria-label="message"
+                      aria-describedby="basic-addon1"
+                      onKeyPress={e=>{
+                            if(e.key==='Enter' && e.target.value){
+                                
+                            }
+                        }}
+                    />
+                  </InputGroup>
+                )
+            }
+        },[])}
         </>
     )
 }

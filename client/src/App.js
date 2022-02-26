@@ -31,11 +31,12 @@ function App() {
       return res.json()
     }).then((data)=>{
       console.log(data)
-      setUserId(data[0]._id)
+      // setUserId(data[0]._id)
     })
     if(parsedLoginInfo){
   
       setUserInfo(parsedLoginInfo.name)
+      setUserId(parsedLoginInfo.googleId)
     }
   },[])
 
