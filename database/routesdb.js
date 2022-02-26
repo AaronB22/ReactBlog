@@ -57,6 +57,14 @@ router.post('/newUser', ({body},res)=>{
         })
 })
 
+router.post('/updateUser',async({body}, res)=>{
+    console.log(body)
+    const q= await User.updateOne({googleId:body.googleId}, {
+        userName:'test'
+    })
+    res.send(q)
+})
+
 router.get('/getFollow/:id',async (req, res)=>{
     const params=req.params.id;
     const q=await Follow.find({}).where('id').equals(params)
