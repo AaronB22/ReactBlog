@@ -11,32 +11,40 @@ import {
   Col
 } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import Chatrooms from './Components/Chatroom';
 import NavBarComp from './Components/NavBarComp';
 import {SocketContext} from './utils/SocketProvider';
-import { UserNameContext } from './utils/LoginInfo';
+import { UserNameContext, UserIdContext } from './utils/LoginInfo';
 import ChatRoomIndex from './Components/ChatroomIndex';
 
 
 function App() {
   const [userInfo, setUserInfo]= useState(null);
-  const [logInStatus, setLogInStatus] = useState('Login');
-  const [userClickOnApp, setUserClickOnApp]= useState();
+  const [userId, setUserId] = useState()
   useEffect(()=>{
     const loginData=window.localStorage.getItem('loginInfo')
-    const parsedLoginInfo= JSON.parse(loginData)
-    if(parsedLoginInfo){
-      console.log(parsedLoginInfo)
-      setUserInfo(parsedLoginInfo.name)
+    if(loginData){
+      const parsedLoginInfo= JSON.parse(loginData)
+      const url='/getUser/'+parsedLoginInfo.googleId
+      fetch(url).then((res)=>{
+        return res.json()
+      }).then((data)=>{
+        console.log(data)
+        // setUserId(data[0]._id)
+      })
+      if(parsedLoginInfo){
+    
+        setUserInfo(parsedLoginInfo.name)
+        setUserId(parsedLoginInfo.googleId)
+      }
+
     }
-    // if(userInfo){
-    //   setLogInStatus(null)
-    // }
+  
   },[])
 
   return (
         <div className='App' >
             <SocketContext.Provider>
+            <UserIdContext.Provider value={{userId, setUserId}}>
             <UserNameContext.Provider value={{userInfo, setUserInfo}}>
                 <Router >
           <Row style={{
@@ -66,6 +74,7 @@ function App() {
            </Row>
                 </Router>
               </UserNameContext.Provider>
+              </UserIdContext.Provider>
             </SocketContext.Provider>
         </div>
   );

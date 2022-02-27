@@ -3,6 +3,8 @@ import ChatroomPage from './pages/ChatroomPage';
 import Login from './pages/Login';
 import CreateNewChatRoom from './pages/CreateNewChatRoom';
 import Home from './pages/Home'
+import ProfilePage from './pages/ProfilePage';
+import CreateNewUser from './pages/CreateNewUser';
 
 const Routers=()=>{
     return(
@@ -14,10 +16,15 @@ const Routers=()=>{
             <Route path='/chatroom/:id' element={
                 <ChatroomPage/>
             }/>
+            <Route path='/profile/:id' element={
+                <ProfilePage/>
+            }/>
+             <Route path='/createNewUser' element={
+                <CreateNewUser/>
+            }/>
             <Route exact path='/' element={
                 <Home/>
             }/>
-            
         </Routes>
         
     )

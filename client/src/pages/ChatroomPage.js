@@ -7,7 +7,7 @@ import {
   } from 'react-bootstrap';
 import MsgForm from "../Components/MsgForm";
 import {socket} from "../utils/SocketProvider";
-import { UserNameContext } from "../utils/LoginInfo";
+import { UserNameContext, UserIdContext } from "../utils/LoginInfo";
 import { useParams } from "react-router-dom";
 
 const ChatroomPage= ()=>{
@@ -15,7 +15,6 @@ const ChatroomPage= ()=>{
     const d= new Date
     // console.log(d.getTimezoneOffset())
     let min= d.getMinutes();
-    console.log(min)
     if(min<10){
         min='0'+min
     }
@@ -24,9 +23,11 @@ const ChatroomPage= ()=>{
         'min': min
     }
     const {userInfo, setUserInfo} = useContext(UserNameContext)
+    const {lastMsg, setLastMsg} =useState()
     const [msgData, setMsgData] = useState([])
     const [chatRoomTitle,setChatroomTitle]= useState()
     const { id } = useParams()
+    const {userId, setUserId}= useContext(UserIdContext)
     useEffect(()=>{
         fetch('/getChatRoomById/'+id).then(res=>{
            return res.json()
@@ -48,11 +49,27 @@ const ChatroomPage= ()=>{
     useEffect(()=>{
        socket.once(id, msg=>{
             setMsgData([...msgData, msg])
+            console.log(msg)
+                // console.log(msgData[msgData.length-1])
+            // if(msgData[msgData.length-1].userInfo===msgData[msgData.length-2].userInfo){
+            //     console.log('same')
+            // }
             // newMsg.current.scrollIntoView({ behavior: 'smooth' });
        })
        return()=> socket.off('res-msg')
     }, [msgData, id])
-    
+        useEffect(()=>{
+            console.log('change')
+            // console.log(msgData[msgData.length-1])
+            if(msgData.length>1){
+                if(msgData[msgData.length-1].userInfo===msgData[msgData.length-2].userInfo){
+                    console.log('same')
+                }
+                
+            }
+        },[msgData])
+        
+
         return(
        <div className="main chatroombg">
             <Card.Title style={{
@@ -67,12 +84,17 @@ const ChatroomPage= ()=>{
             </Card.Title>
                 {msgData.map((x)=>{
                     return (
-                        <>
                         <Card className="mainMsgBox" style={{
                             backgroundColor:'#4E4E50',
                             borderTop:'0'
-                        }}>
-                            <Card.Title>
+                        }}
+                        >
+                            {(()=>{
+
+                            })}
+                            <Card.Title onClick={()=>{
+                                console.log(x.userId)
+                            }}>
                                 {x.userInfo}
                                 <Card.Text  style={{
                                     fontSize:'10px',
@@ -92,7 +114,6 @@ const ChatroomPage= ()=>{
                                 </Card.Text>
                             </Card.Text>
                         </Card>
-                        </>
                     )
                 })}
                 <MsgForm

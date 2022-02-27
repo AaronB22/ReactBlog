@@ -12,7 +12,6 @@ const Chatrooms=(props)=>{
         fetch('/getChatRoomList').then(res=>{
            return res.json()
         }).then(data=>{
-            console.log(data)
             setChatrooms(data)
             setLoaded(true)
         })
