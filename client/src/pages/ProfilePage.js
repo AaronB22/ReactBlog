@@ -10,22 +10,29 @@ import {
 
 
 const ProfilePage=()=>{
-    const [profileInfo, setProfileInfo] = useState();
+    const [profileInfo, setProfileInfo] = useState(null);
     const {userId}= useContext(UserIdContext)
     const {userInfo, setUserInfo} = useContext(UserNameContext);
     const [pageLoaded, setPageLoaded]= useState(false)
     useEffect(()=>{
-        console.log(userId)
-        fetch('/getUser/'+userId).then((res)=>{
-            return res.json()
-        }).then((data)=>{
-            console.log(data)
-            setProfileInfo(data)
-            if(data.length=1){
-                console.log('set')
-                setPageLoaded(true)
-            }
-        })
+        const abortCont= new AbortController();
+        setTimeout(()=>{
+            console.log(userId)
+            fetch('/getUser/'+userId, {signal:abortCont.signal}).then((res)=>{
+                return res.json()
+            }).then((data)=>{
+                console.log(data)
+                setProfileInfo(data)
+                if(data.length=1){
+                    console.log('set')
+                    setPageLoaded(true)
+                    
+                }
+            })
+
+        }, 1000)
+
+        return()=>abortCont.abort()
     },[userId])
     if(pageLoaded){
         console.log(profileInfo)
@@ -34,24 +41,12 @@ const ProfilePage=()=>{
                 <h1 className="profileHeader">
                     {profileInfo[0].userName}
                 </h1>
-                {/* <InputGroup className="mt-3">
-                <FormControl
-                placeholder="create new user name"
-                aria-label="message"
-                aria-describedby="basic-addon1"
-                onKeyPress={e=>{
-                        if(e.key==='Enter' && e.target.value){
-                            e.target.value = '';
-                        }
-                    }}
-                style={{
-                    'backgroundColor':'grey',
-                    "color":'white'
-                }}
-                />
-            </InputGroup> */}
+                <Card.Title className="bioTitle">
+                    Bio
+                </Card.Title>
             <div
                 contentEditable="true"
+                className="bioDiv"
             >
                 Test
             </div>

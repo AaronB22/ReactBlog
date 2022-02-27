@@ -14,6 +14,10 @@ const userSchema = new Schema({
         type:String,
         unique: true,
         trim: true
+    },
+    bio:{
+        type: String,
+        required: false
     }
 })
 

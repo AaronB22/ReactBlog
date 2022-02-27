@@ -1,7 +1,7 @@
 .main{
     /* height: 80vh; */
     height: inherit;
-    /* overflow-y: scroll; */
+    overflow-y: scroll;
     display: flex;
     flex-direction: column;
 }
