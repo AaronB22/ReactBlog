@@ -83,6 +83,7 @@ const ChatroomPage= ()=>{
                {chatRoomTitle}
             </Card.Title>
                 {msgData.map((x)=>{
+                    console.log(x)
                     return (
                         <Card className="mainMsgBox" style={{
                             backgroundColor:'#4E4E50',
@@ -93,9 +94,9 @@ const ChatroomPage= ()=>{
 
                             })}
                             <Card.Title onClick={()=>{
-                                console.log(x.userId)
+                                window.location.assign('/public/profile/'+x.customName)
                             }}>
-                                {x.userInfo}
+                                {x.customName}
                                 <Card.Text  style={{
                                     fontSize:'10px',
                                 }}>

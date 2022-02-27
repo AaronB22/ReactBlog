@@ -3,7 +3,7 @@ import {
     FormControl,
     Button
 } from 'react-bootstrap';
-import { UserNameContext, UserIdContext } from '../utils/LoginInfo';
+import { UserNameContext, UserIdContext, CustomUserNameContext } from '../utils/LoginInfo';
 import { useContext } from 'react';
 import { useParams } from "react-router-dom";
 import './MsgForm.css'
@@ -11,10 +11,12 @@ import './MsgForm.css'
 const MsgForm = (props)=>{
     const {userId}= useContext(UserIdContext)
     const {userInfo} = useContext(UserNameContext)
+    const {customName, setCustomName}= useContext(CustomUserNameContext)
     const { id } = useParams()
     const socket= props.io
     const sendData= (txtValue)=>{
-        socket.emit('send-msg', {txtValue, userInfo,userId,id})
+        console.log(customName)
+        socket.emit('send-msg', {txtValue, userInfo,userId,id, customName})
         return()=>{
             socket.disconnect()
         }

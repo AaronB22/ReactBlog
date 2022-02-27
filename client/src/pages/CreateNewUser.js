@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import {UserIdContext, UserNameContext} from "../utils/LoginInfo";
+import {UserIdContext, UserNameContext, CustomUserNameContext} from "../utils/LoginInfo";
 import {
     InputGroup,
     FormControl,
@@ -10,6 +10,7 @@ import {
 const CreateNewUser=()=>{
     const {userId, setUserId}= useContext(UserIdContext)
     const {userInfo, setUserInfo} = useContext(UserNameContext)
+    const {customName, setCustomName}= useContext(CustomUserNameContext)
 
     console.log(userId, userInfo)
     
@@ -33,6 +34,8 @@ const CreateNewUser=()=>{
                       }
                     }).then((res)=>{
                         const url='/profile/'+createUser.googleId
+                        setCustomName(createUser.userName)
+                        window.localStorage.setItem('loginInfo', JSON.stringify(createUser))
                         window.location.assign(url)
                     })
             }

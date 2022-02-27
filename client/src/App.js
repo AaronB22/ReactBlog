@@ -13,28 +13,24 @@ import {
 import 'bootstrap/dist/css/bootstrap.min.css'
 import NavBarComp from './Components/NavBarComp';
 import {SocketContext} from './utils/SocketProvider';
-import { UserNameContext, UserIdContext } from './utils/LoginInfo';
+import { UserNameContext, UserIdContext, CustomUserNameContext } from './utils/LoginInfo';
 import ChatRoomIndex from './Components/ChatroomIndex';
 
 
 function App() {
   const [userInfo, setUserInfo]= useState(null);
   const [userId, setUserId] = useState()
+  const [customName, setCustomName] = useState();
   useEffect(()=>{
     const loginData=window.localStorage.getItem('loginInfo')
     if(loginData){
       const parsedLoginInfo= JSON.parse(loginData)
-      const url='/getUser/'+parsedLoginInfo.googleId
-      fetch(url).then((res)=>{
-        return res.json()
-      }).then((data)=>{
-        console.log(data)
-        // setUserId(data[0]._id)
-      })
+      console.log(parsedLoginInfo)
       if(parsedLoginInfo){
     
         setUserInfo(parsedLoginInfo.name)
         setUserId(parsedLoginInfo.googleId)
+        setCustomName(parsedLoginInfo.userName)
       }
 
     }
@@ -46,6 +42,8 @@ function App() {
             <SocketContext.Provider>
             <UserIdContext.Provider value={{userId, setUserId}}>
             <UserNameContext.Provider value={{userInfo, setUserInfo}}>
+            <CustomUserNameContext.Provider value={{customName, setCustomName}}>
+
                 <Router >
           <Row style={{
             width: '100%',
@@ -73,6 +71,7 @@ function App() {
                     </span>   
            </Row>
                 </Router>
+                </CustomUserNameContext.Provider>
               </UserNameContext.Provider>
               </UserIdContext.Provider>
             </SocketContext.Provider>

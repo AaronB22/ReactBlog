@@ -2,10 +2,10 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const FollowerSchema=new Schema({
-  id:{
+  userName:{
       type: String
   },
-  followingId:{
+  FollowingUserName:{
       type: String
   }
 })

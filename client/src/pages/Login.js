@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import GoogleLogin from "react-google-login";
-import {UserNameContext, UserIdContext} from "../utils/LoginInfo";
+import {UserNameContext, UserIdContext, CustomUserNameContext} from "../utils/LoginInfo";
 import {
     InputGroup,
     FormControl,
@@ -12,6 +12,7 @@ const Login=()=>{
     const [newUser, setNewUser]=useState(false)
     const {userInfo, setUserInfo} = useContext(UserNameContext)
     const {userId, setUserId}= useContext(UserIdContext)
+    const {customName, setCustomName}= useContext(CustomUserNameContext)
     const handleFailure= (result) =>{
         console.log('FAIL TO GET GOOGLE DATA')
         alert(result)
@@ -34,7 +35,13 @@ const Login=()=>{
                 window.location.assign('/createNewUser')
             }
             else{
-                
+                const acc={
+                    "googleId": googleData.googleId,
+                    "name": googleData.profileObj.name,
+                    "userName":data[0].userName
+                }
+                window.localStorage.setItem('loginInfo', JSON.stringify(acc))
+                setCustomName(data[0].userName)
             }
         })
 
