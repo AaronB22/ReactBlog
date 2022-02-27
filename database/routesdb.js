@@ -37,17 +37,13 @@ router.post('/newChatRoom', ({body}, res)=>{
 })
 
 router.get('/getUser/:id', async(req, res)=>{
-    console.log('getting req')
     const params=req.params.id;
-    console.log(params)
     const q=await User.find({}).where('googleId').equals(params)
     res.json(q)
 })
 
 router.get('/getUserByUserName/:name', async(req, res)=>{
-    console.log('gertting req')
     const params=req.params.name;
-    console.log(params)
     const q=await User.find({}).where('userName').equals(params)
     console.log(q)
     res.json(q)
@@ -67,6 +63,7 @@ router.post('/updateUser',async({body}, res)=>{
     console.log(body)
     const q= await User.updateOne({googleId:body.googleId}, {
         userName:body.userName,
+        bio: body.bio
     })
     res.send(q)
 })

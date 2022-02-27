@@ -26,7 +26,6 @@ const ProfilePage=()=>{
                 if(data.length=1){
                     console.log('set')
                     setPageLoaded(true)
-                    
                 }
             })
 
@@ -34,8 +33,23 @@ const ProfilePage=()=>{
 
         return()=>abortCont.abort()
     },[userId])
+    const updateBio=(bio)=>{
+        const newBio={
+            'googleId':userId,
+                'bio': bio
+        }
+        fetch('/updateUser',{
+            method:"POST",
+            body: JSON.stringify(newBio),
+            headers: {
+                Accept: 'application/json, text/plain, */*',
+                'Content-Type': 'application/json',
+              }
+        })
+        
+    }
+
     if(pageLoaded){
-        console.log(profileInfo)
         return(
             <>
                 <h1 className="profileHeader">
@@ -47,8 +61,16 @@ const ProfilePage=()=>{
             <div
                 contentEditable="true"
                 className="bioDiv"
+                onKeyPress={(e)=>{
+                    if(e.key==='Enter'){
+                        console.log(e.target.textContent)
+                        {updateBio(e.target.textContent)}
+
+                    }
+                }
+                }
             >
-                Test
+                {profileInfo[0].bio}
             </div>
                 
             </>
