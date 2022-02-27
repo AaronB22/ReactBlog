@@ -37,7 +37,9 @@ router.post('/newChatRoom', ({body}, res)=>{
 })
 
 router.get('/getUser/:id', async(req, res)=>{
+    console.log('getting req')
     const params=req.params.id;
+    console.log(params)
     const q=await User.find({}).where('googleId').equals(params)
     res.json(q)
 })
