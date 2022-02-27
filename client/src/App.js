@@ -20,24 +20,25 @@ import ChatRoomIndex from './Components/ChatroomIndex';
 function App() {
   const [userInfo, setUserInfo]= useState(null);
   const [userId, setUserId] = useState()
-  const [logInStatus, setLogInStatus] = useState('Login');
-  const [userClickOnApp, setUserClickOnApp]= useState();
   useEffect(()=>{
     const loginData=window.localStorage.getItem('loginInfo')
-    const parsedLoginInfo= JSON.parse(loginData)
-    console.log(parsedLoginInfo.googleId)
-    const url='/getUser/'+parsedLoginInfo.googleId
-    fetch(url).then((res)=>{
-      return res.json()
-    }).then((data)=>{
-      console.log(data)
-      // setUserId(data[0]._id)
-    })
-    if(parsedLoginInfo){
-  
-      setUserInfo(parsedLoginInfo.name)
-      setUserId(parsedLoginInfo.googleId)
+    if(loginData){
+      const parsedLoginInfo= JSON.parse(loginData)
+      const url='/getUser/'+parsedLoginInfo.googleId
+      fetch(url).then((res)=>{
+        return res.json()
+      }).then((data)=>{
+        console.log(data)
+        // setUserId(data[0]._id)
+      })
+      if(parsedLoginInfo){
+    
+        setUserInfo(parsedLoginInfo.name)
+        setUserId(parsedLoginInfo.googleId)
+      }
+
     }
+  
   },[])
 
   return (

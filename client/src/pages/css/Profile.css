@@ -16,3 +16,10 @@
     height: 10rem;
     overflow-y: scroll;
 }
+
+.proBtn{
+    width: 10rem;
+    margin-top: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+}

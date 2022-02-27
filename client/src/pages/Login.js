@@ -22,6 +22,7 @@ const Login=()=>{
          "name": googleData.profileObj.name,
        }
         setUserInfo(googleData.profileObj.name)
+        setUserId(googleData.googleId)
         // window.localStorage.removeItem('loginInfo')
         window.localStorage.setItem('loginInfo', JSON.stringify(googleObj))
         const url='getUser/'+ googleObj.googleId

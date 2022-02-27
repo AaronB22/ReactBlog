@@ -11,7 +11,7 @@ import {
 
 const ProfilePage=()=>{
     const [profileInfo, setProfileInfo] = useState(null);
-    const {userId}= useContext(UserIdContext)
+    const {userId, setUserId}= useContext(UserIdContext)
     const {userInfo, setUserInfo} = useContext(UserNameContext);
     const [pageLoaded, setPageLoaded]= useState(false)
     useEffect(()=>{
@@ -48,6 +48,12 @@ const ProfilePage=()=>{
         })
         
     }
+    const handleLogOut=()=>{
+        setUserId(null);
+        setUserInfo(null)
+       window.localStorage.clear()
+       window.location.assign('/login')
+    }
 
     if(pageLoaded){
         return(
@@ -72,7 +78,11 @@ const ProfilePage=()=>{
             >
                 {profileInfo[0].bio}
             </div>
-                
+               <Button className="proBtn"
+                    onClick={handleLogOut}
+               >
+                LogOut
+               </Button>
             </>
         )
 
