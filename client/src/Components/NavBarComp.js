@@ -1,20 +1,11 @@
 import { Navbar, Container, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { useEffect, useState, useContext } from "react";
+import {useContext } from "react";
 import { UserNameContext, UserIdContext } from "../utils/LoginInfo";
 import './NavBar.css'
 const NavBarComp=()=>{
-    const {userInfo, setUserInfo} = useContext(UserNameContext)
-    const {userId, setUserId}= useContext(UserIdContext)
-    const [userInfoState, setUserInfoState]= useState(null)
-    const [logInStatus, setLogInStatus] = useState('Login')
-    useEffect(()=>{
-        if(userInfoState){
-            setLogInStatus(null)
-        }
-    },[userInfoState])
-
-
+    const {userInfo} = useContext(UserNameContext)
+    const {userId}= useContext(UserIdContext)
     const url='/profile/'+userId
     return(
         <>
@@ -37,7 +28,6 @@ const NavBarComp=()=>{
                 
                 
                 </Navbar.Brand>
-            {/* <Navbar.Brand ><Link to="/" className='text-black'>{userInfoState}</Link></Navbar.Brand> */}
             </Container>
           </Navbar>
         </>

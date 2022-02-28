@@ -2,8 +2,6 @@ import { useContext, useEffect, useState } from "react";
 import { UserNameContext, UserIdContext } from "../utils/LoginInfo";
 import "./css/Profile.css";
 import {
-    InputGroup,
-    FormControl,
     Button,
     Card
 } from 'react-bootstrap';
@@ -12,7 +10,7 @@ import {
 const ProfilePage=()=>{
     const [profileInfo, setProfileInfo] = useState(null);
     const {userId, setUserId}= useContext(UserIdContext)
-    const {userInfo, setUserInfo} = useContext(UserNameContext);
+    const {setUserInfo} = useContext(UserNameContext);
     const [pageLoaded, setPageLoaded]= useState(false)
     useEffect(()=>{
         const abortCont= new AbortController();

@@ -1,28 +1,21 @@
 import {
-    InputGroup,
-    FormControl,
-    Button,
     Card
 } from 'react-bootstrap';
-import {UserIdContext, UserNameContext, CustomUserNameContext} from "../utils/LoginInfo";
+import {CustomUserNameContext} from "../utils/LoginInfo";
 import { useContext, useEffect, useState, } from "react";
 import './css/Follow.css'
 
 const FollowList = () => {
-    const [follow, setFollow]=useState([])
-    const [location, setLocation] = useState();
+    const [setFollow]=useState([])
     const [followCard, setFollowCard] = useState([]);
     const {customName, setCustomName}= useContext(CustomUserNameContext)
     useEffect(async()=>{
-        console.log(customName)
         const url='/getFollow/Admin'
         const res= await fetch(url)
         const data= await res.json()
-        console.log(data)
         data.map(async x=>{
             const locReq= await fetch(`/getLocation/`+x.FollowingUserName)
             const loc= await locReq.json()
-            console.log(loc.location)
             const follInfo={
                 "userName":x.FollowingUserName,
                 "location":loc.location

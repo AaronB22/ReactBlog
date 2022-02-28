@@ -26,7 +26,6 @@ function App() {
     const loginData=window.localStorage.getItem('loginInfo')
     if(loginData){
       const parsedLoginInfo= JSON.parse(loginData)
-      console.log(parsedLoginInfo)
       if(parsedLoginInfo){
     
         setUserInfo(parsedLoginInfo.name)
