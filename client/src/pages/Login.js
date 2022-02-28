@@ -4,15 +4,14 @@ import {UserNameContext, UserIdContext, CustomUserNameContext} from "../utils/Lo
 import {
     InputGroup,
     FormControl,
-    Button,
     Card
 } from 'react-bootstrap';
 
 const Login=()=>{
-    const [newUser, setNewUser]=useState(false)
-    const {userInfo, setUserInfo} = useContext(UserNameContext)
-    const {userId, setUserId}= useContext(UserIdContext)
-    const {customName, setCustomName}= useContext(CustomUserNameContext)
+    const [newUser]=useState(false)
+    const {setUserInfo} = useContext(UserNameContext)
+    const {setUserId}= useContext(UserIdContext)
+    const {setCustomName}= useContext(CustomUserNameContext)
     const handleFailure= (result) =>{
         console.log('FAIL TO GET GOOGLE DATA')
         alert(result)
@@ -24,7 +23,6 @@ const Login=()=>{
        }
         setUserInfo(googleData.profileObj.name)
         setUserId(googleData.googleId)
-        // window.localStorage.removeItem('loginInfo')
         window.localStorage.setItem('loginInfo', JSON.stringify(googleObj))
         const url='getUser/'+ googleObj.googleId
         fetch(url).then((res)=>{

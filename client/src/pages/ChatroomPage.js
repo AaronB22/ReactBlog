@@ -28,7 +28,6 @@ const ChatroomPage= ()=>{
     const [msgData, setMsgData] = useState([])
     const [chatRoomTitle,setChatroomTitle]= useState()
     const { id } = useParams()
-    const {userId, setUserId}= useContext(UserIdContext)
     useEffect(()=>{
         fetch('/getChatRoomById/'+id).then(res=>{
            return res.json()

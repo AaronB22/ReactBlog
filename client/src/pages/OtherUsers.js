@@ -1,10 +1,8 @@
 import {
-    InputGroup,
-    FormControl,
     Button,
     Card
 } from 'react-bootstrap';
-import {UserIdContext, UserNameContext, CustomUserNameContext} from "../utils/LoginInfo";
+import { CustomUserNameContext} from "../utils/LoginInfo";
 import "./css/Profile.css";
 import { useContext, useEffect, useState, } from "react";
 import { useParams } from "react-router-dom";
@@ -14,7 +12,7 @@ const OtherUsers = () => {
     const [publicInfo, setPublicInfo] = useState();
     const [pageLoaded, setPageLoaded]= useState(false)
     const [followStatus, setFollowStatus] = useState('Follow');
-    const {customName, setCustomName}= useContext(CustomUserNameContext)
+    const {customName}= useContext(CustomUserNameContext)
     useEffect(async()=>{
         const url= '/getUserByUserName/'+userName
         const abortCont= new AbortController();
@@ -32,7 +30,6 @@ const OtherUsers = () => {
         const res= await fetch('/getFollow/'+customName)
         const data= await res.json()
        data.map(x=>{
-            console.log(x)
             if(x.FollowingUserName===publicInfo.userName){
                 setFollowStatus('Unfollow')
             }
@@ -50,7 +47,6 @@ const OtherUsers = () => {
         if(followStatus==='Unfollow'){
             fetch(`/deleteFollow/${customName}/${publicInfo.userName}`)
             .then((res)=>{
-                console.log('done')
                 setFollowStatus('Follow')
             })
         }

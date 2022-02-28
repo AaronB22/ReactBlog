@@ -4,16 +4,12 @@ import './css/Home.css'
 import { 
     Card,
     Container,
-    Row,
-    Button
 } from "react-bootstrap";
 
 const Home=()=>{
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     useEffect(()=>{
-        console.log('??????')
         const loginData=window.localStorage.getItem('loginInfo')
-        const parsedLoginInfo= JSON.parse(loginData)
         if(loginData){
             console.log('logged in')
             setIsLoggedIn(true)

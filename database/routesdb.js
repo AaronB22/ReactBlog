@@ -21,15 +21,12 @@ router.get('/getChatRoomById/:id', async(req, res)=>{
 
 
 router.get('/findChatRoom/:name', async(req, res)=>{
-     
-        console.log('getting req')
         const params= req.params.name
        const q=await Chatroom.find({}).where('name').equals(params)
        res.json(q)
     })
 
 router.post('/newChatRoom', ({body}, res)=>{
-    console.log(body)
     Chatroom.insertMany(body)
         .then(x=>{
             res.json(x)
@@ -45,14 +42,12 @@ router.get('/getUser/:id', async(req, res)=>{
 router.get('/getUserByUserName/:name', async(req, res)=>{
     const params=req.params.name;
     const q=await User.find({}).where('userName').equals(params)
-    console.log(q)
     res.json(q)
 })
 
 
 
 router.post('/newUser', ({body},res)=>{
-    console.log(body)
     User.insertMany(body)
         .then(x=>{
             res.json(x)
@@ -60,7 +55,6 @@ router.post('/newUser', ({body},res)=>{
 })
 
 router.post('/updateUser',async({body}, res)=>{
-    
     const q= await User.updateOne({googleId:body.googleId}, {
         userName:body.userName,
         bio: body.bio
@@ -81,7 +75,6 @@ router.get('/getUserByUserName/:userName', async(req,res)=>{
 })
 
 router.post('/followUser', async({body}, res)=>{
-    console.log(body)
     const q= await Follow.insertMany(body)
     res.send(q)
 })

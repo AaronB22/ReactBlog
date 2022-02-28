@@ -1,8 +1,8 @@
 import Chatrooms from "./Chatroom"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars, faSquare, faX } from '@fortawesome/free-solid-svg-icons'
+import { faBars, faX } from '@fortawesome/free-solid-svg-icons'
 import { useEffect, useState } from 'react'
-import { Card } from "react-bootstrap"
+
 
 const ChatRoomIndex=()=>{
 

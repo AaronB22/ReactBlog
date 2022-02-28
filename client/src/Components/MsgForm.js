@@ -1,7 +1,6 @@
 import {
     InputGroup,
     FormControl,
-    Button
 } from 'react-bootstrap';
 import { UserNameContext, UserIdContext, CustomUserNameContext } from '../utils/LoginInfo';
 import { useContext } from 'react';
@@ -11,7 +10,7 @@ import './MsgForm.css'
 const MsgForm = (props)=>{
     const {userId}= useContext(UserIdContext)
     const {userInfo} = useContext(UserNameContext)
-    const {customName, setCustomName}= useContext(CustomUserNameContext)
+    const {customName}= useContext(CustomUserNameContext)
     const { id } = useParams()
     const socket= props.io
     const sendData= (txtValue)=>{
