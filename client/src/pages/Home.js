@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react";
+import FollowList from "./FollowList";
 import './css/Home.css'
 import { 
     Card,

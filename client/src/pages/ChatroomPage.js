@@ -7,7 +7,7 @@ import {
   } from 'react-bootstrap';
 import MsgForm from "../Components/MsgForm";
 import {socket} from "../utils/SocketProvider";
-import { UserNameContext, UserIdContext } from "../utils/LoginInfo";
+import { UserNameContext, UserIdContext, CustomUserNameContext } from "../utils/LoginInfo";
 import { useParams } from "react-router-dom";
 
 const ChatroomPage= ()=>{
@@ -23,6 +23,7 @@ const ChatroomPage= ()=>{
         'min': min
     }
     const {userInfo, setUserInfo} = useContext(UserNameContext)
+    const {customName, setCustomName}= useContext(CustomUserNameContext)
     const {lastMsg, setLastMsg} =useState()
     const [msgData, setMsgData] = useState([])
     const [chatRoomTitle,setChatroomTitle]= useState()
@@ -47,6 +48,13 @@ const ChatroomPage= ()=>{
 
     },[userInfo])
     useEffect(()=>{
+        console.log(chatRoomTitle)
+        if(chatRoomTitle){
+            socket.emit('chatroom_joined',{customName, chatRoomTitle})
+        }
+    },[id, chatRoomTitle])
+
+    useEffect(()=>{
        socket.once(id, msg=>{
             setMsgData([...msgData, msg])
             console.log(msg)
@@ -58,6 +66,7 @@ const ChatroomPage= ()=>{
        })
        return()=> socket.off('res-msg')
     }, [msgData, id])
+    
         useEffect(()=>{
             console.log('change')
             // console.log(msgData[msgData.length-1])

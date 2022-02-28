@@ -23,6 +23,7 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/reactBlogDB',  
 });
 
 app.use(require("./database/routesdb"))
+const User=require('./database/models/User')
 io.on("connection", socket =>{
   console.log('USER CONNECTED')
   socket.on('send-msg', (msgObj)=>{
@@ -31,12 +32,17 @@ io.on("connection", socket =>{
       console.log('getting msg')
     io.emit(chatroomId, msgObj)
   })
-  socket.on('chatroom_joined', (data)=>{
+  socket.on('chatroom_joined',(data)=>{
     socket.join(data);
-    console.log("New User")
+    console.log(data)
+    User.updateOne({userName:data.customName},{
+      location:data.chatRoomTitle
+    }).then((res)=>{
+      console.log('done')
+    })
   })
-  socket.on('disconnect',()=>{
-    console.log('USER DISCONNECTED')
+  socket.on('disconnect',(data)=>{
+    console.log('USER DISCONNECTED', data)
   })
 })
 

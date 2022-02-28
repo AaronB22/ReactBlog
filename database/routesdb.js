@@ -95,6 +95,15 @@ router.get('/deleteFollow/:userName/:FollowingUserName', async(req,res)=>{
     })
 })
 
+router.get('/getLocation/:name', async (req, res)=>{
+    const params=req.params.name;
+    const q=await User.find({}).where('userName').equals(params)
+    const loc={
+        "location":q[0].location
+    }
+    res.json(loc)
+})
+
 
 
 

@@ -18,6 +18,10 @@ const userSchema = new Schema({
     bio:{
         type: String,
         required: false
+    },
+    location:{
+        type: String,
+        required: false
     }
 })
 
