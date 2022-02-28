@@ -20,11 +20,8 @@ const OtherUsers = () => {
         const abortCont= new AbortController();
        const res= await fetch(url,{signal:abortCont.signal})
        const data=await res.json()
-       console.log(data)
        setPublicInfo(data[0])
        setPageLoaded(true)
-       console.log(data[0].userName)
-       console.log(customName)
        if(data[0].userName===customName){
           setFollowStatus('same')
        }
@@ -37,7 +34,7 @@ const OtherUsers = () => {
        data.map(x=>{
             console.log(x)
             if(x.FollowingUserName===publicInfo.userName){
-                setFollowStatus('Following')
+                setFollowStatus('Unfollow')
             }
         })
        
@@ -48,15 +45,30 @@ const OtherUsers = () => {
         const body={
             "userName":customName,
             "FollowingUserName":publicInfo.userName
+
         }
-        fetch('/followUser',{
-            method: 'POST',
-            body: JSON.stringify(body),
-            headers: {
-                Accept: 'application/json, text/plain, */*',
-                'Content-Type': 'application/json',
-              }
+        if(followStatus==='Unfollow'){
+            fetch(`/deleteFollow/${customName}/${publicInfo.userName}`)
+            .then((res)=>{
+                console.log('done')
+                setFollowStatus('Follow')
             })
+        }
+
+
+        if(followStatus==="Follow"){
+            fetch('/followUser',{
+                method: 'POST',
+                body: JSON.stringify(body),
+                headers: {
+                    Accept: 'application/json, text/plain, */*',
+                    'Content-Type': 'application/json',
+                  }
+                }).then((res)=>{
+                    setFollowStatus('Unfollow')
+                })
+                
+        }
     }
 
     if(pageLoaded){

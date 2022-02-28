@@ -83,10 +83,10 @@ router.get('/getUserByUserName/:userName', async(req,res)=>{
 router.post('/followUser', async({body}, res)=>{
     console.log(body)
     const q= await Follow.insertMany(body)
-    res.json(q)
+    res.send(q)
 })
 
-router.delete('/deleteFollow/:userName/:FollowingUserName', async(req,res)=>{
+router.get('/deleteFollow/:userName/:FollowingUserName', async(req,res)=>{
     const params= req.params
     console.log(params)
     Follow.deleteOne(params,(err, result)=>{
