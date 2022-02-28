@@ -1,0 +1,32 @@
+.mainFllBlck{
+    width: 50rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5rem;
+    overflow-y: scroll;
+    height: 40rem;
+}
+.followBlock{
+    width: 80%;
+    margin-top: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media screen and (max-width:1000px) {
+    .mainFllBlck{
+        width: 40rem;
+    }
+}
+
+@media screen and (max-width:800px) {
+    .mainFllBlck{
+        width: 30rem;
+    }
+}
+
+@media screen and (max-width:500px) {
+    .mainFllBlck{
+        width: 20rem;
+    }
+}

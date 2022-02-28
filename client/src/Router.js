@@ -5,8 +5,11 @@ import CreateNewChatRoom from './pages/CreateNewChatRoom';
 import Home from './pages/Home'
 import ProfilePage from './pages/ProfilePage';
 import CreateNewUser from './pages/CreateNewUser';
+import FollowList from './pages/FollowList';
+import OtherUsers from './pages/OtherUsers';
 
 const Routers=()=>{
+
     return(
         <Routes>
             <Route exact path='/login' element={<Login/>}/>
@@ -21,6 +24,12 @@ const Routers=()=>{
             }/>
              <Route path='/createNewUser' element={
                 <CreateNewUser/>
+            }/>
+             <Route exact path='/follow' element={
+                <FollowList/>
+            }/>
+            <Route exact path='/public/profile/:userName' element={
+                <OtherUsers/>
             }/>
             <Route exact path='/' element={
                 <Home/>

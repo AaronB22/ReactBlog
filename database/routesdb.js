@@ -60,7 +60,7 @@ router.post('/newUser', ({body},res)=>{
 })
 
 router.post('/updateUser',async({body}, res)=>{
-    console.log(body)
+    
     const q= await User.updateOne({googleId:body.googleId}, {
         userName:body.userName,
         bio: body.bio
@@ -68,12 +68,41 @@ router.post('/updateUser',async({body}, res)=>{
     res.send(q)
 })
 
-router.get('/getFollow/:id',async (req, res)=>{
-    const params=req.params.id;
-    const q=await Follow.find({}).where('id').equals(params)
+router.get('/getFollow/:userName',async (req, res)=>{
+    const params=req.params.userName;
+    const q=await Follow.find({}).where('userName').equals(params)
+    res.send(q)
 })
 
+router.get('/getUserByUserName/:userName', async(req,res)=>{
+    const params= req.params.userName;
+    const q= await User.find({}).where('userName').equals(params)
+    res.send(q)
+})
 
+router.post('/followUser', async({body}, res)=>{
+    console.log(body)
+    const q= await Follow.insertMany(body)
+    res.send(q)
+})
+
+router.get('/deleteFollow/:userName/:FollowingUserName', async(req,res)=>{
+    const params= req.params
+    console.log(params)
+    Follow.deleteOne(params,(err, result)=>{
+        if(err) throw err;
+        console.log(result)
+    })
+})
+
+router.get('/getLocation/:name', async (req, res)=>{
+    const params=req.params.name;
+    const q=await User.find({}).where('userName').equals(params)
+    const loc={
+        "location":q[0].location
+    }
+    res.json(loc)
+})
 
 
 

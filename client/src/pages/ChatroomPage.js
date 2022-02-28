@@ -7,7 +7,7 @@ import {
   } from 'react-bootstrap';
 import MsgForm from "../Components/MsgForm";
 import {socket} from "../utils/SocketProvider";
-import { UserNameContext, UserIdContext } from "../utils/LoginInfo";
+import { UserNameContext, UserIdContext, CustomUserNameContext} from "../utils/LoginInfo";
 import { useParams } from "react-router-dom";
 
 const ChatroomPage= ()=>{
@@ -23,6 +23,7 @@ const ChatroomPage= ()=>{
         'min': min
     }
     const {userInfo, setUserInfo} = useContext(UserNameContext)
+    const {customName, setCustomName}= useContext(CustomUserNameContext)
     const {lastMsg, setLastMsg} =useState()
     const [msgData, setMsgData] = useState([])
     const [chatRoomTitle,setChatroomTitle]= useState()
@@ -43,9 +44,18 @@ const ChatroomPage= ()=>{
         }
         if(!loginData){
             setUserInfo(null)
+            alert("You need to be sign in to use Chatrooms")
+            window.location.assign('/')
         }
 
     },[userInfo])
+    useEffect(()=>{
+        console.log(chatRoomTitle)
+        if(chatRoomTitle){
+            socket.emit('chatroom_joined',{customName, chatRoomTitle})
+        }
+    },[id, chatRoomTitle])
+
     useEffect(()=>{
        socket.once(id, msg=>{
             setMsgData([...msgData, msg])
@@ -58,6 +68,7 @@ const ChatroomPage= ()=>{
        })
        return()=> socket.off('res-msg')
     }, [msgData, id])
+    
         useEffect(()=>{
             console.log('change')
             // console.log(msgData[msgData.length-1])
@@ -69,7 +80,6 @@ const ChatroomPage= ()=>{
             }
         },[msgData])
         
-
         return(
        <div className="main chatroombg">
             <Card.Title style={{
@@ -83,6 +93,7 @@ const ChatroomPage= ()=>{
                {chatRoomTitle}
             </Card.Title>
                 {msgData.map((x)=>{
+                    console.log(x)
                     return (
                         <Card className="mainMsgBox" style={{
                             backgroundColor:'#4E4E50',
@@ -93,9 +104,9 @@ const ChatroomPage= ()=>{
 
                             })}
                             <Card.Title onClick={()=>{
-                                console.log(x.userId)
+                                window.location.assign('/public/profile/'+x.customName)
                             }}>
-                                {x.userInfo}
+                                {x.customName}
                                 <Card.Text  style={{
                                     fontSize:'10px',
                                 }}>
