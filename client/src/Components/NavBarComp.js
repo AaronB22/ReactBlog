@@ -1,9 +1,10 @@
 import { Navbar, Container, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import {useContext } from "react";
-import { UserNameContext, UserIdContext } from "../utils/LoginInfo";
+import { UserNameContext, UserIdContext, CustomUserNameContext } from "../utils/LoginInfo";
 import './NavBar.css'
 const NavBarComp=()=>{
+    const {customName}= useContext(CustomUserNameContext)
     const {userInfo} = useContext(UserNameContext)
     const {userId}= useContext(UserIdContext)
     const url='/profile/'+userId
@@ -19,7 +20,7 @@ const NavBarComp=()=>{
                 {(()=>{
                     if(userInfo){
                         return(
-                        <Link to={url} className='text-black linkText'>{userInfo}</Link>)
+                        <Link to={url} className='text-black linkText'>{customName}</Link>)
                     }
                     else return(
                         <Link to="/login" className='text-black linkText'>Login</Link>
