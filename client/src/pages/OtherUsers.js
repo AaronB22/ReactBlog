@@ -37,7 +37,6 @@ const OtherUsers = () => {
        data.map(x=>{
             console.log(x)
             if(x.FollowingUserName===publicInfo.userName){
-                console.log('following')
                 setFollowStatus('Following')
             }
         })
