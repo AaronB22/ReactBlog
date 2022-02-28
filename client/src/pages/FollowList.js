@@ -39,6 +39,11 @@ const FollowList = () => {
                 backgroundColor:'#1A1A1D'
             }}
         >
+            <Card.Title className='text-center' style={{
+                color:'white'
+            }}>
+                Who you are Following:
+            </Card.Title>
         {followCard.map((x)=>{
             console.log(x)
             return(

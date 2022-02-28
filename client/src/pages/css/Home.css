@@ -41,6 +41,10 @@
     width: 33%;
     background-color: #C3073F;
 }
+.nameTiltle{
+    text-align: center;
+    font-style: italic;
+}
 
 
 @media screen and (max-width:1300px){

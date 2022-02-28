@@ -13,12 +13,13 @@ import {
 import 'bootstrap/dist/css/bootstrap.min.css'
 import NavBarComp from './Components/NavBarComp';
 import {SocketContext} from './utils/SocketProvider';
-import { UserNameContext, UserIdContext, CustomUserNameContext } from './utils/LoginInfo';
+import { UserNameContext, UserIdContext, CustomUserNameContext} from './utils/LoginInfo';
 import ChatRoomIndex from './Components/ChatroomIndex';
 
 
 function App() {
   const [userInfo, setUserInfo]= useState(null);
+  const [logInStatus, setLogInStatus] = useState(false);
   const [userId, setUserId] = useState()
   const [customName, setCustomName] = useState();
   useEffect(()=>{
@@ -31,11 +32,12 @@ function App() {
         setUserInfo(parsedLoginInfo.name)
         setUserId(parsedLoginInfo.googleId)
         setCustomName(parsedLoginInfo.userName)
+        setLogInStatus(true)
       }
 
     }
   
-  },[])
+  },[logInStatus])
 
   return (
         <div className='App' >

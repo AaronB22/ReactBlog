@@ -7,7 +7,7 @@ import {
   } from 'react-bootstrap';
 import MsgForm from "../Components/MsgForm";
 import {socket} from "../utils/SocketProvider";
-import { UserNameContext, UserIdContext, CustomUserNameContext } from "../utils/LoginInfo";
+import { UserNameContext, UserIdContext, CustomUserNameContext} from "../utils/LoginInfo";
 import { useParams } from "react-router-dom";
 
 const ChatroomPage= ()=>{
@@ -44,6 +44,8 @@ const ChatroomPage= ()=>{
         }
         if(!loginData){
             setUserInfo(null)
+            alert("You need to be sign in to use Chatrooms")
+            window.location.assign('/')
         }
 
     },[userInfo])
@@ -78,7 +80,6 @@ const ChatroomPage= ()=>{
             }
         },[msgData])
         
-
         return(
        <div className="main chatroombg">
             <Card.Title style={{
