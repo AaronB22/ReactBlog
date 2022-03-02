@@ -24,7 +24,7 @@ const ChatRoomIndex=()=>{
       const [windowWidth, setWindowWidth] =useState(getWindowWidth)
       useEffect(()=>{
         setWindowWidth(getWindowWidth())
-      })
+      },[])
     if (windowWidth>=1400){
         return(
             <>
