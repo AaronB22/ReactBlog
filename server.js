@@ -53,11 +53,6 @@ io.on("connection", socket =>{
 
 app.use(express.static(root));
 
-app.get('/test', (req, res)=>{
-  // console.log(io)
-  console.log(root)
-  // res.json(io)
-})
 app.get("*", (req, res) => {
     res.sendFile('index.html', { root });
 })
