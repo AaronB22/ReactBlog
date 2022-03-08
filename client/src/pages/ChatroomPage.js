@@ -1,19 +1,15 @@
-import { useEffect, useState, useContext, useRef } from "react";
+import { useEffect, useState, useContext } from "react";
 import './css/ChatroomPage.css'
 import {
-    Container,
     Card,
-    Button
   } from 'react-bootstrap';
 import MsgForm from "../Components/MsgForm";
 import {socket} from "../utils/SocketProvider";
-import { UserNameContext, UserIdContext, CustomUserNameContext} from "../utils/LoginInfo";
+import { UserNameContext, CustomUserNameContext} from "../utils/LoginInfo";
 import { useParams } from "react-router-dom";
 
 const ChatroomPage= ()=>{
-    // const newMsg= useRef()
-    const d= new Date
-    // console.log(d.getTimezoneOffset())
+    const d= new Date()
     let min= d.getMinutes();
     if(min<10){
         min='0'+min
@@ -23,8 +19,7 @@ const ChatroomPage= ()=>{
         'min': min
     }
     const {userInfo, setUserInfo} = useContext(UserNameContext)
-    const {customName, setCustomName}= useContext(CustomUserNameContext)
-    const {lastMsg, setLastMsg} =useState()
+    const {customName}= useContext(CustomUserNameContext)
     const [msgData, setMsgData] = useState([])
     const [chatRoomTitle,setChatroomTitle]= useState()
     const { id } = useParams()
@@ -34,7 +29,7 @@ const ChatroomPage= ()=>{
         }).then(data=>{
             setChatroomTitle(data[0].name)
         })
-    },[chatRoomTitle])
+    },[chatRoomTitle, id])
     useEffect(()=>{
         const loginData=window.localStorage.getItem('loginInfo')
         const parsedLoginInfo= JSON.parse(loginData)
@@ -47,37 +42,22 @@ const ChatroomPage= ()=>{
             window.location.assign('/')
         }
 
-    },[userInfo])
+    },[userInfo, setUserInfo])
     useEffect(()=>{
-        console.log(chatRoomTitle)
         if(chatRoomTitle){
             socket.emit('chatroom_joined',{customName, chatRoomTitle})
         }
-    },[id, chatRoomTitle])
+    },[id, chatRoomTitle, customName])
 
     useEffect(()=>{
        socket.once(id, msg=>{
             setMsgData([...msgData, msg])
-            console.log(msg)
-                // console.log(msgData[msgData.length-1])
-            // if(msgData[msgData.length-1].userInfo===msgData[msgData.length-2].userInfo){
-            //     console.log('same')
-            // }
-            // newMsg.current.scrollIntoView({ behavior: 'smooth' });
+            const section= document.querySelector('#scrollElm')
+            section.scrollIntoView(false)
        })
        return()=> socket.off('res-msg')
-    }, [msgData, id])
+    }, [msgData, id, setMsgData])
     
-        useEffect(()=>{
-            console.log('change')
-            // console.log(msgData[msgData.length-1])
-            if(msgData.length>1){
-                if(msgData[msgData.length-1].userInfo===msgData[msgData.length-2].userInfo){
-                    console.log('same')
-                }
-                
-            }
-        },[msgData])
         
         return(
        <div className="main chatroombg">
@@ -126,6 +106,16 @@ const ChatroomPage= ()=>{
                         </Card>
                     )
                 })}
+                <div 
+                id='scrollElm'
+                style={{
+                    display:'block',
+                    bottom:'10px',
+                    width:'10px',
+                    backgroundColor:'purple'
+                }}>
+                        1
+                </div>
                 <MsgForm
                     io= {socket}              
                 />

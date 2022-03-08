@@ -1,14 +1,11 @@
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom'
+import { BrowserRouter as Router} from 'react-router-dom'
 import Routers from './Router';
 import React from 'react';
 import "./App.css"
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState} from "react";
 import {
-  Navbar,
-  Container,
   Row,
   Card,
-  Col
 } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import NavBarComp from './Components/NavBarComp';

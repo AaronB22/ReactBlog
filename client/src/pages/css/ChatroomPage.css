@@ -1,6 +1,6 @@
 .main{
     /* height: 80vh; */
-    height: inherit;
+    height: 50rem;
     overflow-y: scroll;
     display: flex;
     flex-direction: column;
