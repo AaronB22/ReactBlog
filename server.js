@@ -1,5 +1,5 @@
 const express = require('express');
-const root = require('path').join(__dirname, 'build')
+const root = require('path').join(__dirname, 'client/build')
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose')
 
@@ -22,10 +22,16 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/reactBlogDB',  
 app.use(require("./database/routesdb"))
 const User=require('./database/models/User')
 
-
+let socketOrigin
+if(port===5000){
+  socketOrigin='http://localhost:5000'
+}
+else{
+  socketOrigin=process.env.PORT
+}
 const io = require("socket.io")(8900,{
   cors:{
-    origin:'http://localhost:5000'
+    origin:socketOrigin
   }
 })
 

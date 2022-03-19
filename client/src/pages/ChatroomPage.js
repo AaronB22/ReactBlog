@@ -112,7 +112,8 @@ const ChatroomPage= ()=>{
                     display:'block',
                     bottom:'10px',
                     width:'10px',
-                    backgroundColor:'purple'
+                    backgroundColor:'#4E4E50',
+                    color:'#4E4E50'
                 }}>
                         1
                 </div>
