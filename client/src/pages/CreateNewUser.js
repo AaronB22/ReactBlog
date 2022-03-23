@@ -1,16 +1,14 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext} from "react";
 import {UserIdContext, UserNameContext, CustomUserNameContext} from "../utils/LoginInfo";
 import {
     InputGroup,
     FormControl,
-    Button,
-    Card
 } from 'react-bootstrap';
 
 const CreateNewUser=()=>{
-    const {userId, setUserId}= useContext(UserIdContext)
-    const {userInfo, setUserInfo} = useContext(UserNameContext)
-    const {customName, setCustomName}= useContext(CustomUserNameContext)
+    const {userId}= useContext(UserIdContext)
+    const {userInfo} = useContext(UserNameContext)
+    const {setCustomName}= useContext(CustomUserNameContext)
 
     console.log(userId, userInfo)
     

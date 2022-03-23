@@ -46,13 +46,15 @@ const Login=()=>{
     }
     return(
         <>
-       
-        <Card>
+        <Card style={{
+            background:'#4e4e50'
+        }}>
             <Card style={{
                 width:'10rem',
                 marginLeft: 'auto',
                 marginRight: 'auto',
-                color:'black'
+                color:'black',
+                background:'#4e4e50'
             }}>
                 <Card.Title>
                     Login With Google

@@ -8,7 +8,7 @@ import './css/Follow.css'
 const FollowList = () => {
     const [setFollow]=useState([])
     const [followCard, setFollowCard] = useState([]);
-    const {customName, setCustomName}= useContext(CustomUserNameContext)
+    const {customName}= useContext(CustomUserNameContext)
     useEffect(async()=>{
         const url='/getFollow/Admin'
         const res= await fetch(url)

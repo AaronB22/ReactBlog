@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import {useEffect, useState } from "react";
 import FollowList from "./FollowList";
 import './css/Home.css'
 import { 
@@ -15,6 +15,9 @@ const Home=()=>{
             setIsLoggedIn(true)
         }
     },[isLoggedIn])
+    const goToLogIn=()=>{
+        window.location.assign('/login')
+    }
     if(!isLoggedIn){
         
         return(
@@ -38,7 +41,7 @@ const Home=()=>{
                             <p className="txtofbox">
                                 Click the button below to create an account!
                             </p>
-                            <button className="boxBtn">
+                            <button className="boxBtn" onClick={goToLogIn}>
                                 Sign Up
                             </button>
                         </Card>
@@ -52,7 +55,7 @@ const Home=()=>{
                             <p className="txtofbox" >
                                 Already have an Account? Click the Button Below to sign in!
                             </p>
-                            <button className="boxBtn">
+                            <button className="boxBtn" onClick={goToLogIn}>
                                 Login
                             </button>
                         </Card>
