@@ -31,7 +31,7 @@ else{
 }
 const io = require("socket.io")(8900,{
   cors:{
-    origin:socketOrigin
+    origin:['http://localhost:3000',socketOrigin]
   }
 })
 
@@ -56,6 +56,8 @@ app.use(express.static(root));
 
 app.get("*", (req, res) => {
     res.sendFile('index.html', { root });
+    console.log(root)
+    // res.sendFile(root);
 })
 
 
