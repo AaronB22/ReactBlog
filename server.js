@@ -25,9 +25,11 @@ const User=require('./database/models/User')
 let socketOrigin
 if(port===5000){
   socketOrigin='http://localhost:5000'
+  console.log(process.env.PORT)
 }
 else{
   socketOrigin=process.env.PORT
+  console.log(process.env.PORT)
 }
 const io = require("socket.io")(8900,{
   cors:{
