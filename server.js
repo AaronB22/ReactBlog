@@ -33,7 +33,7 @@ else{
 }
 const io = require("socket.io")(8900,{
   cors:{
-    origin:['http://localhost:3000',socketOrigin]
+    origin:['http://localhost:3000','https://aaronb22-reactblog.herokuapp.com/']
   }
 })
 
