@@ -56,8 +56,6 @@ app.use(express.static(root));
 
 app.get("*", (req, res) => {
     res.sendFile('index.html', { root });
-    console.log(root)
-    // res.sendFile(root);
 })
 
 
